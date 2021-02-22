@@ -1,0 +1,33 @@
+{
+  "name": "<%= scaffoldConfig.projectName %>",
+  "description": "<%= scaffoldConfig.projectName %>",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "    eslint src       --ext .ts --ext .js",
+    "lint:fix": "eslint src --fix --ext .ts --ext .js",
+    "build": "   yarn run eslint && tsc",
+    "dev": "     nodemon ./src/index.ts",
+    "node": "    node    ./dist/index.js",
+    "start": "   yarn run dev",
+    "test": "    mocha -r ts-node/register -r tsconfig-paths/register test/*.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/mocha": "^8.2.1",
+    "@types/node": "^14.0.6",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "assert": "^2.0.0",
+    "chalk": "^4.1.0",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.3.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "quick-scaffold",
+  "description": "一个用于快速构建 web page, web package, node package 的脚手架",
+  "version": "1.0.0",
+  "bin": {
+    "quick-scaffold": "dist/index"
+  },
+  "scripts": {
+    "build": "tsc && ts-node scripts/__rename.ts",
+    "build:local-test": "tsc && ts-node scripts/__rename.ts  && yarn link && yarn unlink  && yarn link"
+  },
+  "author": "1038761793@qq.com",
+  "homepage": "https://github.com/xiaomingTang/quick-scaffold",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "inquirer": "^7.3.3",
+    "tang-base-node-utils": "^1.3.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^7.3.1",
+    "@types/node": "^14.14.30",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  }
+}

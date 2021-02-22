@@ -1,0 +1,25 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.vscode": true,
+    "**/*.pyc": true,
+    "**/yarn.lock": true,
+    "**/package-lock.json": true
+  },
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "eslint.lintTask.enable": false,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "eslint.options": {
+    "configFile": ".eslintrc.js"
+  }
+}

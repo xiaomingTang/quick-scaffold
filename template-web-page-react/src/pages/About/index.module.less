@@ -1,0 +1,45 @@
+@import "~@Src/pages/global.vars.less";
+
+@width: 500px;
+@height: calc(sqrt(2) * @width);
+
+.inputs-wrapper {
+  display: inline-block;
+  width: 20em;
+  height: @height;
+  margin-left: 20px;
+  overflow-y: auto;
+  border: 1px solid black;
+}
+
+.input-item {
+  display: inline-block;
+  position: relative;
+  width: 9em;
+  height: 9em;
+  margin-left: 0.666em;
+  margin-top: 0.666em;
+  background-color: rgba(0,0,0,.5);
+  cursor: move;
+}
+
+.input-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.input-img-title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2em;
+  text-align: center;
+  line-height: 2em;
+  background-color: rgba(0,0,0,.5);
+  color: white;
+  overflow: hidden;
+  pointer-events: none;
+}

@@ -1,0 +1,119 @@
+#!/usr/bin/env node
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+const inquirer_1 = __importDefault(require("inquirer"));
+const tang_base_node_utils_1 = require("tang-base-node-utils");
+const utils_1 = require("./utils");
+const templates = [
+    {
+        title: "web page of react",
+        rootPath: utils_1.resolveProject("template-web-page-react"),
+    },
+    {
+        title: "web package",
+        rootPath: utils_1.resolveProject("template-package-web"),
+    },
+    {
+        title: "node package",
+        rootPath: utils_1.resolveProject("template-package-node"),
+    },
+];
+function getTemplateFromTitle(title) {
+    return templates.find(({ title: theTitle }) => title === theTitle);
+}
+function replaceAndCopyTemplate() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const answers = yield inquirer_1.default.prompt([
+            {
+                type: "list",
+                name: "templateType",
+                message: "template type:",
+                choices: templates.map(({ title }) => title),
+                loop: true,
+            },
+            {
+                type: "input",
+                name: "projectName",
+                message: "your project name:",
+                default: `quick-scaffold-${Date.now()}`,
+                validate: (input, curAnswers) => {
+                    if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/g.test(input)) {
+                        return "/^[a-zA-Z][a-zA-Z0-9_-]*$/g is accepted.";
+                    }
+                    if (fs_1.default.existsSync(utils_1.resolveUser(input))) {
+                        return "file or dir exists, input a new name please.";
+                    }
+                    return true;
+                },
+            },
+        ]);
+        const { templateType, projectName } = answers;
+        const templateRootPath = getTemplateFromTitle(templateType).rootPath;
+        if (!templateType || !templateRootPath) {
+            throw new Error("invalid template type.");
+        }
+        if (!projectName) {
+            throw new Error("invalid project name.");
+        }
+        const templateDir = new tang_base_node_utils_1.Dir(templateRootPath);
+        const allFiles = [];
+        // 及其简陋地忽略 node_modules 目录
+        templateDir.rawChildren.forEach((childName) => {
+            if (childName === "node_modules") {
+                return;
+            }
+            const base = templateDir.childOf(childName);
+            if (base.isDir) {
+                allFiles.push(...base.asDir().allFiles);
+            }
+            else if (base.isFile) {
+                allFiles.push(base.asFile());
+            }
+            else {
+                // 这儿应当永远不会出现(never), 所以报个错
+                throw new Error(`${childName} is not fold neither file`);
+            }
+        });
+        allFiles.forEach((f) => {
+            const relPath = path_1.default.relative(templateDir.path, f.path);
+            const tarBase = new tang_base_node_utils_1.Base(utils_1.resolveUser(projectName, relPath));
+            let replacedContent = f.read();
+            Object.entries(answers)
+                // 在此明确指出, 哪些 answers 参与 replace
+                .filter(([key]) => ["projectName"].includes(key))
+                .forEach(([key, val]) => {
+                replacedContent = replacedContent.replace(new RegExp(`<%= scaffoldConfig.${key} %>`, "gm"), val);
+            });
+            tarBase.createAsFile().write(replacedContent);
+        });
+        utils_1.log.success(`
+  your project ${projectName} has been inited.
+  next cmd you should run:
+    cd ${projectName}
+    yarn
+  `);
+    });
+}
+function main() {
+    replaceAndCopyTemplate();
+}
+if (require.main === module) {
+    main();
+}
+else {
+    utils_1.log.warn("this file is only used for create quick-scaffold, cannot be imported.");
+}
