@@ -31,8 +31,8 @@ module.exports = {
     // "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
-    // window风格的换行(而非unix)
-    "linebreak-style": ["error", "windows"],
+    // 关闭换行风格检测
+    "linebreak-style": "off",
     "quotes": ["error", "double"],
     "indent": ["error", 2],
     "no-console": "off",

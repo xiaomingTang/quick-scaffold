@@ -2,7 +2,7 @@
 import fs from "fs"
 import path from "path"
 import inquirer from "inquirer"
-import { Base, Dir } from "tang-base-node-utils"
+import { Base, File, Dir } from "tang-base-node-utils"
 
 import { log, resolveProject, resolveUser } from "./utils"
 
@@ -69,7 +69,7 @@ async function replaceAndCopyTemplate() {
   }
 
   const templateDir = new Dir(templateRootPath)
-  const allFiles = []
+  const allFiles: File[] = []
   // 及其简陋地忽略 node_modules 目录
   templateDir.rawChildren.forEach((childName) => {
     if (childName === "node_modules") {
@@ -89,20 +89,35 @@ async function replaceAndCopyTemplate() {
     const relPath = path.relative(templateDir.path, f.path)
     const tarBase = new Base(resolveUser(projectName, relPath))
     let replacedContent = f.read()
+    let isConfigIncluded = false
     Object.entries(answers)
       // 在此明确指出, 哪些 answers 参与 replace
       .filter(([key]) => ["projectName"].includes(key))
       .forEach(([key, val]) => {
-        replacedContent = replacedContent.replace(new RegExp(`<%= scaffoldConfig.${key} %>`, "gm"), val)
+        replacedContent = replacedContent.replace(new RegExp(`<%= scaffoldConfig.${key} %>`, "gm"), () => {
+          isConfigIncluded = true
+          return val
+        })
       })
-    tarBase.createAsFile().write(replacedContent)
+    // 存在待替换的配置, 将替换后的内容写入文本文件(因为该项目中文本文件都是 utf8 编码的)
+    // 不存在则原封不动复制过去(这样就不必判断源文件编码)
+    if (isConfigIncluded) {
+      tarBase.createAsFile().write(replacedContent)
+    } else {
+      tarBase.parent.createAsDir()
+      fs.copyFileSync(f.path, tarBase.path)
+    }
   })
 
   log.success(`
   your project ${projectName} has been inited.
   next cmd you should run:
+
     cd ${projectName}
     yarn
+
+  for more scripts, you can review \`${projectName}/package.json\` > scripts
+  for more infomation, you can review \`${projectName}/README.md\`
   `)
 }
 

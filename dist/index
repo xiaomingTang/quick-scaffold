@@ -92,19 +92,35 @@ function replaceAndCopyTemplate() {
             const relPath = path_1.default.relative(templateDir.path, f.path);
             const tarBase = new tang_base_node_utils_1.Base(utils_1.resolveUser(projectName, relPath));
             let replacedContent = f.read();
+            let isConfigIncluded = false;
             Object.entries(answers)
                 // 在此明确指出, 哪些 answers 参与 replace
                 .filter(([key]) => ["projectName"].includes(key))
                 .forEach(([key, val]) => {
-                replacedContent = replacedContent.replace(new RegExp(`<%= scaffoldConfig.${key} %>`, "gm"), val);
+                replacedContent = replacedContent.replace(new RegExp(`<%= scaffoldConfig.${key} %>`, "gm"), () => {
+                    isConfigIncluded = true;
+                    return val;
+                });
             });
-            tarBase.createAsFile().write(replacedContent);
+            // 存在待替换的配置, 将替换后的内容写入文本文件(因为该项目中文本文件都是 utf8 编码的)
+            // 不存在则原封不动复制过去(这样就不必判断源文件编码)
+            if (isConfigIncluded) {
+                tarBase.createAsFile().write(replacedContent);
+            }
+            else {
+                tarBase.parent.createAsDir();
+                fs_1.default.copyFileSync(f.path, tarBase.path);
+            }
         });
         utils_1.log.success(`
   your project ${projectName} has been inited.
   next cmd you should run:
+
     cd ${projectName}
     yarn
+
+  for more scripts, you can review \`${projectName}/package.json\` > scripts
+  for more infomation, you can review \`${projectName}/README.md\`
   `);
     });
 }
