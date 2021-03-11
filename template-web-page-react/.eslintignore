@@ -4,3 +4,4 @@ public/
 !src/**/*.ts
 !src/**/*.tsx
 **/*.d.ts
+**/*.js

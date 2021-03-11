@@ -21,6 +21,7 @@ module.exports = {
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-parameter-properties": "off",
+    "import/named": "off",
     "import/prefer-default-export": "off",
     // "import/no-unresolved": "off",
     "import/extensions": "off",
