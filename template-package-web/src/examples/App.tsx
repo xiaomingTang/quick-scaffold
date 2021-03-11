@@ -3,7 +3,7 @@ import React from "react"
 
 import "@Src/examples/global/global"
 
-import { testExport } from "@Src/main/index"
+import { testExport } from "@Src/index"
 
 import Styles from "./App.module.less"
 

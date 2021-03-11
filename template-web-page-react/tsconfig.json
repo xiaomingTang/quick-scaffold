@@ -6,7 +6,7 @@
     "outDir": "./dist",
     "sourceMap": true,
     "module": "ESNext",
-    "target": "ESNext",
+    "target": "ES2018",
     "jsx": "preserve",
     "moduleResolution": "node",
     "allowJs": true,

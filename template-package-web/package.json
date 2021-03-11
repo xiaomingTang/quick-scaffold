@@ -2,7 +2,11 @@
   "name": "<%= scaffoldConfig.projectName %>",
   "description": "<%= scaffoldConfig.projectName %>",
   "version": "0.0.1",
-  "main": "./dist/index.min.js",
+  "main": "./dist/umd/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
   "browserslist": {
     "production": [
       "> 1%",
@@ -15,10 +19,17 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "   cross-env NODE_ENV=development TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
-    "build": "   cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.config.ts",
-    "lint": "    eslint src       --ext .ts --ext .tsx",
-    "lint:fix": "eslint src --fix --ext .ts --ext .tsx"
+    "start": "     cross-env NODE_ENV=development TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
+    "build:cjs": " cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.config.ts",
+    "build:mjs": " tsc -m es6 --outDir dist/esm",
+    "build": "yarn run build:cjs & yarn run build:mjs",
+    "lint": "      eslint src       --ext .ts --ext .tsx",
+    "lint:fix": "  eslint src --fix --ext .ts --ext .tsx"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/runtime-corejs3": "^7.12.1",
+    "core-js": "3"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",

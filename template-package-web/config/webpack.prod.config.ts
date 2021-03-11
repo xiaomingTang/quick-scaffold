@@ -6,6 +6,7 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin"
 
 import commonWebpackConfig from "./webpack.common.config"
 import { optimization } from "./webpack-optimization"
+import { convertToPascalCase } from "./utils"
 
 import Paths from "./paths"
 
@@ -13,12 +14,13 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
   mode: "production",
   devtool: "cheap-module-source-map",
   entry: {
-    index: path.resolve(Paths.Src, "main/index.ts"),
+    index: path.resolve(Paths.Src, "index.ts"),
   },
+  externals: {},
   output: {
-    path: Paths.Dist,
-    filename: "[name].min.js",
-    library: "<%= scaffoldConfig.projectName %>",
+    path: Paths.DistUmd,
+    filename: "[name].js",
+    library: convertToPascalCase("<%= scaffoldConfig.projectName %>"),
     libraryTarget: "umd",
   },
   plugins: [

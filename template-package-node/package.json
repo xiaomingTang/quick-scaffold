@@ -3,6 +3,9 @@
   "description": "<%= scaffoldConfig.projectName %>",
   "version": "0.0.1",
   "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "scripts": {
     "lint": "    eslint src       --ext .ts --ext .js",
@@ -13,6 +16,7 @@
     "start": "   yarn run dev",
     "test": "    mocha -r ts-node/register -r tsconfig-paths/register test/*.ts"
   },
+  "peerDependencies": {},
   "dependencies": {},
   "devDependencies": {
     "@types/mocha": "^8.2.1",

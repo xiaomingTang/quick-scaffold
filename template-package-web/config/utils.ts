@@ -17,3 +17,9 @@ export const log = {
     console.log(chalk.gray("[whispered] ", ...text))
   },
 }
+
+export function convertToPascalCase(name: string): string {
+  return name.replace(/(-|_|^)(\w)/g, (match, p1: string, p2: string) => {
+    return p2.toUpperCase()
+  })
+}
