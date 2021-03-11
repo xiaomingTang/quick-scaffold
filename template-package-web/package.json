@@ -19,12 +19,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "     cross-env NODE_ENV=development TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
-    "build:cjs": " cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.config.ts",
-    "build:mjs": " tsc -m es6 --outDir dist/esm",
-    "build": "yarn run build:cjs & yarn run build:mjs",
-    "lint": "      eslint src       --ext .ts --ext .tsx",
-    "lint:fix": "  eslint src --fix --ext .ts --ext .tsx"
+    "start": "          cross-env NODE_ENV=development TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
+    "build:examples": " cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.examples.config.ts",
+    "build:cjs": "      cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.config.ts",
+    "build:mjs": "      tsc -m es6 --outDir dist/esm",
+    "build": "          yarn run build:cjs & yarn run build:mjs & yarn run build:examples",
+    "lint": "           eslint src       --ext .ts --ext .tsx",
+    "lint:fix": "       eslint src --fix --ext .ts --ext .tsx"
   },
   "peerDependencies": {
     "@babel/core": "^7.12.3",
