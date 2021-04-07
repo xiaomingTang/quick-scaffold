@@ -1,7 +1,7 @@
 {
   "name": "quick-scaffold",
   "description": "一个用于快速构建 web page, web package, node package 的脚手架",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "bin": {
     "quick-scaffold": "dist/index"
   },
