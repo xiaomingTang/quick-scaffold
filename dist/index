@@ -89,7 +89,7 @@ function replaceAndCopyTemplate() {
             }
         });
         allFiles.forEach((f) => {
-            const relPath = path_1.default.relative(templateDir.path, f.path);
+            const relPath = path_1.default.relative(templateDir.path, f.path).replace("__UNUSED_PREFIX__", "");
             const tarBase = new tang_base_node_utils_1.Base(utils_1.resolveUser(projectName, relPath));
             let replacedContent = f.read();
             let isConfigIncluded = false;

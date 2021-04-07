@@ -86,7 +86,7 @@ async function replaceAndCopyTemplate() {
     }
   })
   allFiles.forEach((f) => {
-    const relPath = path.relative(templateDir.path, f.path)
+    const relPath = path.relative(templateDir.path, f.path).replace("__UNUSED_PREFIX__", "")
     const tarBase = new Base(resolveUser(projectName, relPath))
     let replacedContent = f.read()
     let isConfigIncluded = false
