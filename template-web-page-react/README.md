@@ -1,4 +1,7 @@
 # <%= scaffoldConfig.projectName %>
+模板来自 [quick-scaffold template-web-page-react](https://github.com/xiaomingTang/quick-scaffold)
+
+<%= scaffoldConfig.description %>
 
 ### 项目特点
 - `webpack 5` + `typescript` + `react`

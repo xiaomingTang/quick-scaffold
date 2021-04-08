@@ -11,7 +11,11 @@ interface Template {
   rootPath: string;
 }
 
-type SimpleAnswers = Record<string, string>
+interface SimpleAnswers {
+  templateType: string;
+  projectName: string;
+  description: string;
+}
 
 const templates: Template[] = [
   {
@@ -56,16 +60,19 @@ async function replaceAndCopyTemplate() {
         return true
       },
     },
+    {
+      type: "input",
+      name: "description",
+      message: "your project description:",
+      default: "",
+    },
   ])
 
-  const { templateType, projectName } = answers
+  const { templateType, projectName, description } = answers
   const templateRootPath = getTemplateFromTitle(templateType).rootPath
 
-  if (!templateType || !templateRootPath) {
+  if (!templateRootPath) {
     throw new Error("invalid template type.")
-  }
-  if (!projectName) {
-    throw new Error("invalid project name.")
   }
 
   const templateDir = new Dir(templateRootPath)
@@ -92,7 +99,7 @@ async function replaceAndCopyTemplate() {
     let isConfigIncluded = false
     Object.entries(answers)
       // 在此明确指出, 哪些 answers 参与 replace
-      .filter(([key]) => ["projectName"].includes(key))
+      .filter(([key]) => ["projectName", "description"].includes(key))
       .forEach(([key, val]) => {
         replacedContent = replacedContent.replace(new RegExp(`<%= scaffoldConfig.${key} %>`, "gm"), () => {
           isConfigIncluded = true

@@ -15,7 +15,12 @@
     "strict": true,
     "paths": {
       "@Src/*": ["src/*"]
-    }
+    },
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths"
+      }
+    ]
   },
   "include": [
     "./src/**/*"
