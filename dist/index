@@ -105,7 +105,7 @@ function replaceAndCopyTemplate() {
                     return val;
                 });
             });
-            // 存在待替换的配置, 将替换后的内容写入文本文件(因为该项目中文本文件都是 utf8 编码的)
+            // 存在待替换的配置, 则将替换后的内容写入文本文件(因为该项目中文本文件都是 utf8 编码的)
             // 不存在则原封不动复制过去(这样就不必判断源文件编码)
             if (isConfigIncluded) {
                 tarBase.createAsFile().write(replacedContent);
@@ -122,8 +122,8 @@ function replaceAndCopyTemplate() {
     cd ${projectName}
     yarn
 
-  for more scripts, you can review \`${projectName}/package.json\` > scripts
-  for more infomation, you can review \`${projectName}/README.md\`
+  - for more scripts, you can review \`${projectName}/package.json\` > scripts
+  - for more infomation, you can review \`${projectName}/README.md\`
   `);
     });
 }

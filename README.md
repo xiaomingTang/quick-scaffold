@@ -4,8 +4,14 @@
 
 当前有 3 类模板:
 - [web page of react](./template-web-page-react/README.md)
+    - 用于快速搭建react页面
+    - `webpack 5` + `typescript` + `babel` + `PWA` + `代码分割(React.lazy)` + `dll` + `eslint`
+    - `react` + `redux` + `router` + `i18n` + `antd` + `iconfont`
+    - `less module` + `postcss` + `autoprefixer`
 - [web package](./template-package-web/README.md)
+    - 用于快速搭建 web 包
 - [node package](./template-package-node/README.md)
+    - 用于快速搭建 node 包
 
 ### Usage
 ```
