@@ -121,6 +121,7 @@ function replaceAndCopyTemplate() {
 
     cd ${projectName}
     yarn
+    yarn start
 
   - for more scripts, you can review \`${projectName}/package.json\` > scripts
   - for more infomation, you can review \`${projectName}/README.md\`
