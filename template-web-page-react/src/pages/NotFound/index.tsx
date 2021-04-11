@@ -6,13 +6,13 @@ import {
 export default function NotFound() {
   const location = useLocation()
 
-  return <div>
+  return <div key="404" style={{ padding: "10px" }}>
     <p>404 Not Found</p>
     <p>
-      页面
-      【{location.pathname}】
-      未找到, 立即
-      <Link to="/">返回主页</Link>
+      page
+      [ {location.pathname} ]
+      not found, you can go to
+      <Link to="/"> Home</Link>
     </p>
   </div>
 }

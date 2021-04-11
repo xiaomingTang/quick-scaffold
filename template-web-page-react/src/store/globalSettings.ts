@@ -23,6 +23,7 @@ export function reducer(state = initState, action: Action): State {
         lang: action.value,
       }
     }
+    console.error(`wrong language: ${lang}`)
     return state
   }
   default:

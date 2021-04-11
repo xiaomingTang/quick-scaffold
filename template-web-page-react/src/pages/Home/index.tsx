@@ -12,6 +12,7 @@ function Home() {
     <p>this is <strong>Home page</strong></p>
     <p>variable from process.env: process.env.APP_NAME is: {process.env.APP_NAME}</p>
     <p>go to <Link to="/about">About</Link></p>
+    <p>go to <Link to="/not-exist-path">not-exist-path</Link></p>
     <Divider>language</Divider>
     <SwitchLang />
     <p>{t("name")}: xiaoming</p>

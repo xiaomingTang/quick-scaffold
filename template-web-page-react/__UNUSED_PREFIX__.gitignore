@@ -3,18 +3,14 @@
 **/.DS_Store/
 **/debug.log
 **/yarn-error.log
+
+# package assets
 /dist/*.html
 /dist/*.ico
 /dist/*.js
 /dist/*.json
-
 /dist/manifest/**/*
+/dist/packages/
 
-/dist/static/scripts/**/*
-/dist/static/styles/**/*
-/dist/static/dll/**/*
-/dist/static/fonts/**/*
-/dist/static/images/**/*
-/dist/static/medias/**/*
-
+# local config
 /config/.env.local.ts

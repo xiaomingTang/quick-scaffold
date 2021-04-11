@@ -28,11 +28,12 @@ export default function SwitchLang() {
     selectedKeys={[lang]}
     onClick={({ key }) => {
       if (isLoading) { return }
+      const tarLang = key.toString()
       setIsLoading(true)
-      i18n.changeLanguage(key, () => {
+      i18n.changeLanguage(tarLang, () => {
         dispatch({
           type: "@globalSettings/i18n",
-          value: key,
+          value: tarLang,
         })
         setIsLoading(false)
       })

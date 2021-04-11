@@ -8,6 +8,7 @@ i18n
   .use(i18nBackEnd)
   .use(initReactI18next)
   .init({
+    lng: defaultLang,
     fallbackLng: defaultLang,
     fallbackNS: "translation",
     backend: {

@@ -26,12 +26,12 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
         "*.html",
         "service-worker.js", "service-worker.*.js", "workbox.js", "workbox-*.js",
         "manifest/*", "manifest.json", "manifest.*.json",
-        "static/scripts/*", "static/styles/*",
+        "packages/scripts/*", "packages/styles/*",
       ],
     }) as unknown as webpack.Plugin,
     // 该版本类型暂未适配 webpack@5
     new MiniCssExtractPlugin({
-      filename: "static/styles/[name].[hash:5].css",
+      filename: "packages/styles/[name].[hash:5].css",
     }) as unknown as webpack.Plugin,
     new webpack.DllReferencePlugin({
       context: __dirname,
@@ -40,8 +40,8 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
     }),
     new AddAssetHtmlPlugin({
       filepath: path.join(Paths.Dll, "scripts/*.js"),
-      outputPath: "static/dll/scripts",
-      publicPath: "static/dll/scripts",
+      outputPath: "packages/dll/scripts",
+      publicPath: "packages/dll/scripts",
     }),
     new ForkTsCheckerWebpackPlugin({
       typescript: true,

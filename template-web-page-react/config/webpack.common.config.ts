@@ -42,10 +42,10 @@ const commonWebpackConfig: webpack.Configuration = {
     // 开发环境用 "./" 貌似会出错, 导致 index.html 都打不开, 估计又是路径拼接的问题(估计没使用 path.join, 而是用的其他的方法), 所以开发环境要使用 "/"
     publicPath: isProduction ? "./" : "/",
     path: Paths.Dist,
-    filename: "static/scripts/[name].[hash:5].js",
+    filename: "packages/scripts/[name].[hash:5].js",
     chunkFilename: isProduction
-      ? "static/scripts/chunk-[name].[hash:5].js"
-      : "static/scripts/chunk-[name].js"
+      ? "packages/scripts/chunk-[name].[hash:5].js"
+      : "packages/scripts/chunk-[name].js"
   },
   resolve,
   module: {

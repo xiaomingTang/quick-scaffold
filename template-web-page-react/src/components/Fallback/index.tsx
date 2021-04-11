@@ -1,25 +1,21 @@
-import React from "react"
+import React, { HTMLAttributes } from "react"
 import { Spin } from "antd"
-import { CloseCircleFilled } from "@ant-design/icons"
+import { LoadingOutlined } from "@ant-design/icons"
+import { SpinProps } from "antd/lib/spin"
+
+import { joinSpace } from "@Src/utils"
 
 import Styles from "./index.module.less"
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   text?: string;
+  spinProps?: SpinProps;
 }
 
 export function Loading({
-  text = "加载中...",
+  text = "加载中...", className, spinProps, ...props
 }: Props) {
-  return <div className={Styles.title}>
-    <Spin tip={text} />
-  </div>
-}
-
-export function Error({
-  text = "加载错误",
-}: Props) {
-  return <div className={Styles.title}>
-    <Spin tip={text} indicator={<CloseCircleFilled className={Styles.error} />} />
+  return <div className={joinSpace(Styles.title, className)} {...props}>
+    <Spin tip={text} indicator={<LoadingOutlined />} {...spinProps} />
   </div>
 }

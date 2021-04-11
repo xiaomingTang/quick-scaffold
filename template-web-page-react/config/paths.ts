@@ -10,7 +10,7 @@ const Paths = {
   Dist: path.resolve(appRoot, "dist"),
   Config: path.resolve(appRoot, "config"),
   NodeModule: path.resolve(appRoot, "node_modules"),
-  Dll: path.resolve(appRoot, "dist/static/dll"),
+  Dll: path.resolve(appRoot, "dist/packages/dll"),
 }
 
 export default Paths

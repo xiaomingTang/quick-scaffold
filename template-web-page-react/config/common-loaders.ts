@@ -106,7 +106,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       loader: "url-loader",
       options: {
         limit: 8192,
-        name: "static/images/[name].[hash:5].[ext]"
+        name: "packages/images/[name].[hash:5].[ext]"
       }
     }]
   },
@@ -117,7 +117,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       loader: "url-loader",
       options: {
         limit: 8192,
-        name: "static/fonts/[name].[hash:5].[ext]"
+        name: "packages/fonts/[name].[hash:5].[ext]"
       }
     }]
   },
@@ -127,7 +127,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
     loader: "url-loader",
     options: {
       limit: 8192,
-      name: "static/medias/[name].[hash:5].[ext]" // 文件名
+      name: "packages/medias/[name].[hash:5].[ext]" // 文件名
     }
   },
 ]
