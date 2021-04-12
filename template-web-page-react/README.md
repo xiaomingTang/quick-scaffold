@@ -11,7 +11,7 @@
 - 更多命令详见[package.json scripts 参数](./package.json)
 
 ### 项目特点
-- `webpack 5` + `typescript` + `babel` + `PWA` + `代码分割(React.lazy)` + `dll` + `eslint`
+- `webpack 5` + `typescript` + `babel` + `PWA` + `代码分割(React.lazy)` + `页面切换动画` + `dll` + `eslint`
 - `react` + `redux` + `router` + `i18n` + `antd` + `iconfont`
 - `less module` + `postcss` + `autoprefixer`
 - development 时依赖编辑器进行 `typescript` 及 `eslint` 校验, 加快开发构建速度

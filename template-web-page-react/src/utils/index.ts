@@ -1,6 +1,7 @@
 import {
   useState, useEffect, Dispatch, SetStateAction,
 } from "react"
+import { randomInt } from "./math"
 
 export function joinSpace(...arr: (string | false | undefined | null)[]) {
   return arr.filter((item) => !!item).join(" ")
@@ -22,4 +23,19 @@ export function genePermanentState<T>() {
 
     return [state, setState]
   }
+}
+
+export function randomSoftColors(): [string, string] {
+  const h = randomInt(0, 360)
+  const s = randomInt(35, 65)
+  const l = randomInt(35, 65)
+  const inversedH = (h + 180) % 360
+  const inversedS = s < 55 ? 100 : 0
+  const inversedL = l < 55 ? 100 : 0
+  return [`hsl(${h},${s}%,${l}%)`, `hsl(${inversedH},${inversedS}%,${inversedL}%)`]
+}
+
+export function useRandomSoftColors(): [string, string] {
+  const [color] = useState(randomSoftColors)
+  return color
 }

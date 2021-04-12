@@ -1,0 +1,116 @@
+@Duration: 500ms;
+
+.animating {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all @Duration;
+}
+
+/* zoom */
+.zoom-enter {
+  .animating;
+  z-index: 999;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.zoom-enter-active {
+  .animating;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zoom-exit {
+  .animating;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.zoom-exit-active {
+  .animating;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* rotate */
+.rotate-enter {
+  .animating;
+  z-index: 999;
+  opacity: 0;
+  transform: rotateY(-90deg) skewY(15deg);
+}
+
+.rotate-enter-active {
+  .animating;
+  opacity: 1;
+  transform: rotateY(0) skewY(0);
+}
+
+.rotate-exit {
+  .animating;
+  opacity: 1;
+  transform: rotateY(0) skewY(0);
+}
+
+.rotate-exit-active {
+  .animating;
+  opacity: 0;
+  transform: rotateY(90deg) skewY(-15deg);
+}
+
+/* wobble */
+.wobble-enter {
+  .animating;
+  z-index: 999;
+  opacity: 0;
+  transform: rotate(15deg);
+  transform-origin: center 300%;
+}
+
+.wobble-enter-active {
+  .animating;
+  opacity: 1;
+  transform: rotate(0);
+  transform-origin: center 300%;
+}
+
+.wobble-exit {
+  .animating;
+  opacity: 1;
+  transform: rotate(0);
+  transform-origin: center 300%;
+}
+
+.wobble-exit-active {
+  .animating;
+  opacity: 0;
+  transform: rotate(-15deg);
+  transform-origin: center 300%;
+}
+
+/* layer */
+.layer-enter {
+  .animating;
+  z-index: 999;
+  opacity: .5;
+  transform: translateX(100%);
+}
+
+.layer-enter-active {
+  .animating;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.layer-exit {
+  .animating;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.layer-exit-active {
+  .animating;
+  opacity: 0;
+  transform: scale(.5);
+}

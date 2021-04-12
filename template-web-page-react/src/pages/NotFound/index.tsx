@@ -12,7 +12,7 @@ export default function NotFound() {
       page
       [ {location.pathname} ]
       not found, you can go to
-      <Link to="/"> Home</Link>
+      <Link to="/" replace> Home</Link>
     </p>
   </div>
 }
