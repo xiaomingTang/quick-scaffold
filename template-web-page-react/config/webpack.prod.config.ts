@@ -55,9 +55,9 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       // 而 webpack5 output.publicPath 默认值为 "auto"(而非 "/" 或 "./")
       // 如果使用 webpack5, 要注意这个问题
       filename: "manifest.[hash:5].json",
-      name: "PWA_name",
-      short_name: "PWA_shortName",
-      description: "PWA_desc",
+      name: "<%= scaffoldConfig.projectName %>",
+      short_name: "<%= scaffoldConfig.projectName %>",
+      description: "<%= scaffoldConfig.description %>",
       display: "standalone",
       start_url: ".",
       background_color: "#ffffff",
@@ -88,6 +88,9 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       // 不允许遗留任何“旧的” ServiceWorkers
       clientsClaim: true,
       skipWaiting: true,
+      exclude: [
+        /\.html$/,
+      ],
     }),
   ],
   optimization,

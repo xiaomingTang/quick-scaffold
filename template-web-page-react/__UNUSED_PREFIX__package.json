@@ -1,6 +1,6 @@
 {
   "name": "<%= scaffoldConfig.projectName %>",
-  "description": "<%= scaffoldConfig.projectName %>",
+  "description": "<%= scaffoldConfig.description %>",
   "version": "0.0.1",
   "main": "./src/index.tsx",
   "browserslist": {
