@@ -1,3 +1,11 @@
+/**
+ * pwa 及 service-worker 相关请看:
+ *
+ * https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle#clientsclaim
+ *
+ * https://jakearchibald.com/2016/caching-best-practices/
+ */
+
 import path from "path"
 import webpack from "webpack"
 import { merge } from "webpack-merge"
@@ -7,7 +15,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import AddAssetHtmlPlugin from "add-asset-html-webpack-plugin"
 import { CleanWebpackPlugin } from "clean-webpack-plugin"
 import WebpackPwaManifest from "webpack-pwa-manifest"
-import { GenerateSW, InjectManifest } from "workbox-webpack-plugin"
+import { GenerateSW } from "workbox-webpack-plugin"
 
 import commonWebpackConfig from "./webpack.common.config"
 import { optimization } from "./webpack-optimization"
@@ -88,9 +96,6 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       // 不允许遗留任何“旧的” ServiceWorkers
       clientsClaim: true,
       skipWaiting: true,
-      exclude: [
-        /\.html$/,
-      ],
     }),
   ],
   optimization,

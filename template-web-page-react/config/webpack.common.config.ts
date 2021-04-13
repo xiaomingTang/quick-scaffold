@@ -2,24 +2,12 @@ import path from "path"
 import webpack from "webpack"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 
-import { log } from "./utils"
+import { getEnvConfig } from "./utils"
 import Paths from "./paths"
 import { isProduction, appName } from "./Constants"
 import { resolve, rules } from "./common-loaders"
-import { EnvConfig } from "./.env"
 
-let envConfig: EnvConfig
-
-try {
-  // 可以不存在 .env.local 文件
-  envConfig = require("./.env.local").envConfig
-  log.success("将注入 .env.local.ts 内的环境变量")
-} catch (error) {
-  envConfig = require("./.env").envConfig
-  log.warn(".env.local.ts 文件不存在, 或未导出 envConfig 变量; 将注入 .env.ts 内的环境变量")
-}
-
-const definePluginOption: Record<string, string> = Object.entries(envConfig).reduce((prev, [key, val]) => {
+const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()).reduce((prev, [key, val]) => {
   prev[`process.env.${key}`] = JSON.stringify(val)
   return prev
 }, {})
