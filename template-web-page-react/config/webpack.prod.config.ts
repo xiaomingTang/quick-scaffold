@@ -96,6 +96,15 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       // 不允许遗留任何“旧的” ServiceWorkers
       clientsClaim: true,
       skipWaiting: true,
+      /**
+       * 可以将不常变动的资源加入缓存
+       */
+      runtimeCaching: [
+        {
+          urlPattern: "translation.json",
+          handler: "StaleWhileRevalidate",
+        },
+      ],
     }),
   ],
   optimization,
