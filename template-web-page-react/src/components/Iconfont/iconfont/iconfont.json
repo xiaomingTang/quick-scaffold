@@ -6,7 +6,35 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "17193165",
+      "icon_id": "21038279",
+      "name": "link-outer",
+      "font_class": "link-outer",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "21038280",
+      "name": "link-inner",
+      "font_class": "link-inner",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "20382148",
+      "name": "ew-resize",
+      "font_class": "ew-resize",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "20382149",
+      "name": "ns-resize",
+      "font_class": "ns-resize",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "17193593",
       "name": "rotate",
       "font_class": "rotate",
       "unicode": "e60f",
