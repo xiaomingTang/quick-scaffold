@@ -33,3 +33,10 @@ export function getEnvConfig(): EnvConfig {
 
   return envConfig
 }
+
+export function isMeansTrue(input: string | undefined | null, strict = false): boolean {
+  if (strict) {
+    return input === "true"
+  }
+  return ["true", "1"].includes((input || "").toLocaleLowerCase())
+}

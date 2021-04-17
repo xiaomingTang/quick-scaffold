@@ -3,11 +3,12 @@ import { merge } from "webpack-merge"
 
 import commonWebpackConfig from "./webpack.common.config"
 import Paths from "./paths"
+import { isMeansTrue } from "./utils"
 
 const devWebpackConfig = merge(commonWebpackConfig, {
   devServer: {
     contentBase: Paths.Dist,
-    // https: true,
+    https: isMeansTrue(process.env.https),
     host: "0.0.0.0",
     port: 8080,
     useLocalIp: true,
