@@ -1,3 +1,6 @@
+import React from "react"
+import { message } from "antd"
+
 import "@Src/polyfills/index"
 
 import "@Src/i18n"
@@ -16,10 +19,11 @@ if ("serviceWorker" in navigator) {
             if (newWorker.state === "installed") {
               if (navigator.serviceWorker.controller) {
                 console.log("new version available")
-                // eslint-disable-next-line no-alert
-                if (window.confirm("新版本已准备好, 是否重启以加载新版本？")) {
-                  window.location.reload()
-                }
+                const cb = message.success(<>
+                  新版本已准备好: <a onClick={() => {
+                    window.location.reload()
+                  }}>立即加载新版本</a> 或 <a onClick={() => cb()}>下次一定</a>
+                </>, 0)
               }
             }
           })
