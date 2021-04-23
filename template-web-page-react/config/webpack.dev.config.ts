@@ -13,7 +13,7 @@ const devWebpackConfig = merge(commonWebpackConfig, {
     port: 8080,
     useLocalIp: true,
     hot: true,
-    open: true,
+    open: isMeansTrue(process.env.open),
     openPage: "./index.html",
     // 开发时代理, 可解决开发时跨域问题
     proxy: [

@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin"
 
 import { getEnvConfig } from "./utils"
 import Paths from "./paths"
-import { isProduction, appName } from "./Constants"
+import { isProduction, appName } from "./constants"
 import { resolve, rules } from "./common-loaders"
 
 const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()).reduce((prev, [key, val]) => {
@@ -54,7 +54,7 @@ const commonWebpackConfig: webpack.Configuration = {
       /\.d\.ts$/,
     ]),
     new webpack.ProgressPlugin({
-      modules: true,
+      activeModules: false,
     }),
     new webpack.DefinePlugin(definePluginOption),
   ],
