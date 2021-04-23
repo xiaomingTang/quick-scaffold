@@ -13,8 +13,8 @@ interface SimpleAnswers {
 }
 
 function checkProjectName(input: string, curAnswers: SimpleAnswers): ReturnType<Question<SimpleAnswers>["validate"]> {
-  if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,20}$/g.test(input)) {
-    return "/^[a-zA-Z][a-zA-Z0-9_-]{0,20}$/g is accepted."
+  if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,30}$/g.test(input)) {
+    return "/^[a-zA-Z][a-zA-Z0-9_-]{0,30}$/g is accepted."
   }
   const base = new Base(resolveUser(input))
   if (base.isFile) {
