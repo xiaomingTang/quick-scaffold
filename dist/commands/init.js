@@ -20,8 +20,8 @@ const tang_base_node_utils_1 = require("tang-base-node-utils");
 const utils_1 = require("../utils");
 const templates_1 = require("../templates");
 function checkProjectName(input, curAnswers) {
-    if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,20}$/g.test(input)) {
-        return "/^[a-zA-Z][a-zA-Z0-9_-]{0,20}$/g is accepted.";
+    if (!/^[a-zA-Z][a-zA-Z0-9_-]{0,30}$/g.test(input)) {
+        return "/^[a-zA-Z][a-zA-Z0-9_-]{0,30}$/g is accepted.";
     }
     const base = new tang_base_node_utils_1.Base(utils_1.resolveUser(input));
     if (base.isFile) {
