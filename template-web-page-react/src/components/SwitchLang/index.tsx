@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Dispatch } from "redux"
 import {
-  Button, Dropdown, Menu,
+  Button, Dropdown, Menu, message,
 } from "antd"
 import {
   CaretDownOutlined, LoadingOutlined,
@@ -30,12 +30,16 @@ export default function SwitchLang() {
       if (isLoading) { return }
       const tarLang = key.toString()
       setIsLoading(true)
-      i18n.changeLanguage(tarLang, () => {
-        dispatch({
-          type: "@globalSettings/i18n",
-          value: tarLang,
-        })
+      i18n.changeLanguage(tarLang, (err) => {
         setIsLoading(false)
+        if (!err) {
+          dispatch({
+            type: "@globalSettings/i18n",
+            value: tarLang,
+          })
+        } else {
+          message.error(<>can <strong>NOT</strong> load target language.</>)
+        }
       })
     }}
   >

@@ -101,7 +101,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
        */
       runtimeCaching: [
         {
-          urlPattern: "translation.json",
+          urlPattern: /translation\.json$/,
           handler: "StaleWhileRevalidate",
         },
       ],
