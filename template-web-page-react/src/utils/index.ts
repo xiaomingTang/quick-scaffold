@@ -64,7 +64,6 @@ export function genePermanentState<T>() {
    * 亮度接近 50% (lightBalance 小), 颜色"深浅"由 "纯净度" 控制(纯净度越小, 颜色越浅)
    */
   const lightBalance = Math.abs((l - 50) / 50)
-  // console.log(purity, lightBalance)
   let inversedL = 10
   // 以下均为经验值
   if (lightBalance > 0.1) {
