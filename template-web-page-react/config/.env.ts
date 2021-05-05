@@ -1,7 +1,11 @@
+import WebpackPwaManifest from "webpack-pwa-manifest";
+
 /**
  * key and value 必须全部为 string, 不得为 number 或其他类型
  */
 export interface EnvConfig {
+  APP_NAME: string;
+  pwaDisplayMode: WebpackPwaManifest.Display;
   [key: string]: string;
 }
 
@@ -30,5 +34,6 @@ export interface EnvConfig {
  * ```
  */
 export const envConfig: EnvConfig = {
-  APP_NAME: "<%= scaffoldConfig.projectName %>",
+  APP_NAME: "xiaomings_home",
+  pwaDisplayMode: "standalone",
 }

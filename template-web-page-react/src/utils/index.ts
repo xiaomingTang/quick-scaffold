@@ -32,7 +32,7 @@ export function genePermanentState<T>() {
  *
  * colorArray[1]: 该背景色下最佳的前景色(常用于作为文本颜色)
  */
- export function randomSoftColors(): [string, string] {
+export function randomSoftColors(): [string, string] {
   // h s l 表示随机背景色
   // inversed* 表示前景色(该背景下最适宜的文本色值)
   const h = randomInt(0, 360)

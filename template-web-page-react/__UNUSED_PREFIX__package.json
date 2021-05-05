@@ -19,6 +19,7 @@
     "start:https": "cross-env NODE_ENV=development OPEN=false https=true TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
     "build:dll": "  cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.dll.config.ts",
     "build": "      cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.config.ts",
+    "build:watch": "cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.config.ts --watch",
     "bundle": "     cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.bundle-analyzer.config.ts",
     "lint": "       eslint src       --ext .ts --ext .tsx",
     "lint:fix": "   eslint src --fix --ext .ts --ext .tsx",

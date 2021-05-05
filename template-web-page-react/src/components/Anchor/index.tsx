@@ -36,7 +36,6 @@ export function Anchor({
     if (target !== undefined) {
       return target
     }
-    console.log(isOuterSite ? "_blank" : "_self")
     return isOuterSite ? "_blank" : "_self"
   }, [isOuterSite, target])
 
@@ -44,7 +43,6 @@ export function Anchor({
     if (rel !== undefined) {
       return rel
     }
-    console.log(isOuterSite ? "noopener noreferrer" : "")
     return isOuterSite ? "noopener noreferrer" : ""
   }, [isOuterSite, rel])
 

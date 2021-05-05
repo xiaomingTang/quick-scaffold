@@ -6,7 +6,8 @@ import {
 } from "react-router-dom"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 
-import "@Src/global/global"
+import "@Src/pages/Global"
+import { Pwa } from "@Src/pages/Global/pwa"
 
 import store, { State } from "@Src/store/index"
 import { PageContainer } from "@Src/components/PageContainer"
@@ -50,6 +51,7 @@ function Contents() {
 
 function AppRoute() {
   return <Provider store={store}>
+    <Pwa />
     <Router>
       <Contents />
     </Router>

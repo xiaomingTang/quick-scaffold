@@ -1,7 +1,16 @@
 import { defaultLang, availableLangs } from "@Src/i18n/datas"
 import { TransitionType, availableTransitionTypes } from "@Src/components/Transitions"
 
+interface BeforeInstallPromptEvent extends Event {
+  readonly userChoice: Promise<{
+    outcome: "installed" | "dismissed";
+    platform: "web" | "android" | "windows" | "";
+  }>;
+  prompt(): Promise<void>;
+}
+
 export interface State {
+  deferredPrompt?: BeforeInstallPromptEvent;
   lang: string;
   transitionType: TransitionType;
 }
@@ -17,6 +26,9 @@ export type Action = {
 } | {
   type: "@globalSettings/transitionType";
   value: TransitionType;
+} | {
+  type: "@globalSettings/deferredPrompt";
+  value?: BeforeInstallPromptEvent;
 }
 
 export function reducer(state = initState, action: Action): State {
@@ -42,6 +54,12 @@ export function reducer(state = initState, action: Action): State {
     }
     console.error(`wrong language: ${transitionType}`)
     return state
+  }
+  case "@globalSettings/deferredPrompt": {
+    return {
+      ...state,
+      deferredPrompt: action.value,
+    }
   }
   default: {
     // redux 初始化会执行到这儿

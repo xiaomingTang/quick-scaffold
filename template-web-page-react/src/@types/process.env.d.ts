@@ -13,6 +13,7 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     NODE_ENV: "development" | "production";
     APP_NAME: string;
+    pwaDisplayMode: "fullscreen" | "standalone" | "minimal-ui" | "browser";
     [key: string]: string;
   }
 }

@@ -51,7 +51,7 @@ const commonWebpackConfig: webpack.Configuration = {
       // hash: true, // 不 hash
     }) as unknown as webpack.Plugin,
     new webpack.WatchIgnorePlugin([
-      /\.d\.ts$/,
+      /\.d\.ts$/, Paths.Dist, Paths.NodeModule,
     ]),
     new webpack.ProgressPlugin({
       activeModules: false,
