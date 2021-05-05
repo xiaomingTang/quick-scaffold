@@ -26,6 +26,7 @@ export function Pwa() {
   useEffect(() => {
     if (navigator.serviceWorker) {
       navigator.serviceWorker.register("./service-worker.js").then((registration) => {
+        console.log("service worker registed")
         registration.addEventListener("updatefound", () => {
           const newWorker = registration.installing
           if (newWorker) {
