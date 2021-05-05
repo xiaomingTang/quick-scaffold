@@ -36,7 +36,7 @@ function checkProjectName(input, curAnswers) {
     ];
     // 如果除允许存在的 children 外, 目标目录还存在其他文件, 则不合法
     if (base.asDir().rawChildren.filter((child) => !availableChildren.includes(child)).length > 0) {
-        return `the dir includes othre file except [${availableChildren.join(", ")}]`;
+        return `the dir includes other file except [${availableChildren.join(", ")}]`;
     }
     return true;
 }
