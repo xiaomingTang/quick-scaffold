@@ -49,6 +49,10 @@ const commonWebpackConfig: webpack.Configuration = {
       chunks: ["index"],
       favicon: path.join(Paths.Public, "favicon.ico"),
       // hash: true, // 不 hash
+      meta: {
+        keywords: "",
+        description: "<%= scaffoldConfig.description %>",
+      },
     }) as unknown as webpack.Plugin,
     new webpack.WatchIgnorePlugin([
       /\.d\.ts$/, Paths.Dist, Paths.NodeModule,
