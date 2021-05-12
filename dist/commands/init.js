@@ -31,6 +31,7 @@ function checkProjectName(input, curAnswers) {
         return true;
     }
     const availableChildren = [
+        ".DS_Store",
         ".git",
         "node_modules",
     ];

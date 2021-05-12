@@ -24,6 +24,7 @@ function checkProjectName(input: string, curAnswers: SimpleAnswers): ReturnType<
     return true
   }
   const availableChildren = [
+    ".DS_Store",
     ".git",
     "node_modules",
   ]
