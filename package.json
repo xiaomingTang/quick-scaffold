@@ -6,8 +6,7 @@
     "quick-scaffold": "dist/index"
   },
   "scripts": {
-    "build": "tsc && ts-node scripts/__rename.ts",
-    "build:local-test": "yarn build && yarn link && yarn unlink  && yarn link"
+    "build": "tsc --newLine lf && ts-node scripts/__rename.ts"
   },
   "author": "1038761793@qq.com",
   "homepage": "https://github.com/xiaomingTang/quick-scaffold",

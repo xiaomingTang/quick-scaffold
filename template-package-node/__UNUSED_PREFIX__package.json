@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "    eslint src       --ext .ts",
     "lint:fix": "eslint src --fix --ext .ts",
-    "build": "   yarn run eslint && tsc --project tsconfig-for-build.json",
+    "build": "   yarn run eslint && tsc --newLine lf --project tsconfig-for-build.json",
     "node": "    node    ./dist/index.js",
     "dev": "     nodemon --watch src --watch test --ext ts --exec ts-node --project tsconfig-for-build.json src/index.ts",
     "start": "   yarn run dev",
