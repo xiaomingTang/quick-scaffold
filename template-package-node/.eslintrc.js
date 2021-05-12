@@ -36,10 +36,12 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".js", ".json"],
+      },
       "webpack": {
         "config": {
           "resolve": {
-            "extensions": [".ts", ".js", ".json"],
             "alias": {
               "@Src": path.resolve("./src"),
               "@Test": path.resolve("./test"),

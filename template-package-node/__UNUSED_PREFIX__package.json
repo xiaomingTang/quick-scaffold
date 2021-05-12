@@ -8,13 +8,13 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "    eslint src       --ext .ts --ext .js",
-    "lint:fix": "eslint src --fix --ext .ts --ext .js",
-    "build": "   yarn run eslint && tsc",
-    "dev": "     nodemon ./src/index.ts",
+    "lint": "    eslint src       --ext .ts",
+    "lint:fix": "eslint src --fix --ext .ts",
+    "build": "   yarn run eslint && tsc --project tsconfig-for-build.json",
     "node": "    node    ./dist/index.js",
+    "dev": "     nodemon --watch src --watch test --ext ts --exec ts-node --project tsconfig-for-build.json src/index.ts",
     "start": "   yarn run dev",
-    "test": "    mocha -r ts-node/register -r tsconfig-paths/register test/*.ts"
+    "test": "    mocha -r ts-node/register -r tsconfig-paths/register --project tsconfig-for-build.json test/*.ts"
   },
   "peerDependencies": {},
   "dependencies": {},

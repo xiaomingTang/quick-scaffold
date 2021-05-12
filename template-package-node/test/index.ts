@@ -1,5 +1,4 @@
 import assert from "assert"
-// @ts-ignore
 import { testExport } from "@Src/index"
 
 describe("Array", function() {
