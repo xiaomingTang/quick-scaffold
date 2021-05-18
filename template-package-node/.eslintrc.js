@@ -36,19 +36,13 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
-      "node": {
+      "alias": {
+        "map": [
+          ["@Src", path.resolve("./src")],
+          ["@Test", path.resolve("./test")],
+        ],
         "extensions": [".ts", ".js", ".json"],
       },
-      "webpack": {
-        "config": {
-          "resolve": {
-            "alias": {
-              "@Src": path.resolve("./src"),
-              "@Test": path.resolve("./test"),
-            },
-          }
-        }
-      }
     },
   },
 }

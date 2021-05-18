@@ -1,8 +1,5 @@
 **/*.js
-**/*.jsx
 **/*.ts
-**/*.tsx
 !src/**/*.ts
-!src/**/*.tsx
+!test/**/*.ts
 **/*.d.ts
-**/*.js
