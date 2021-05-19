@@ -3,3 +3,4 @@
 **/.DS_Store
 **/debug.log
 **/yarn-error.log
+/dist/

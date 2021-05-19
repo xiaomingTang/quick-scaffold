@@ -13,7 +13,7 @@
     "build": "yarn run lint && ttsc --newLine lf --project tsconfig-for-build.json",
     "build:watch": "           ttsc --newLine lf --project tsconfig-for-build.json --watch",
     "node": "node ./dist/index.js",
-    "dev": "nodemon --watch src --watch test --ext ts --exec ts-node --project tsconfig-for-build.json src/index.ts",
+    "dev": "nodemon --watch src --watch test --ext ts --exec ts-node -r tsconfig-paths/register --project tsconfig-for-build.json src/index.ts",
     "start": "yarn run dev",
     "test": "mocha -r ts-node/register -r tsconfig-paths/register --project tsconfig-for-build.json test/*.ts"
   },
