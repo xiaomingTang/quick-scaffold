@@ -18,7 +18,7 @@ function main() {
     });
 }
 if (require.main === module) {
-    const { version } = require(utils_1.resolveProject("package.json"));
-    utils_1.log.success(`version: ${version}`);
+    const { name, version } = require(utils_1.resolveProject("package.json"));
+    utils_1.log.success(`${name}: ${version}`);
     main();
 }
