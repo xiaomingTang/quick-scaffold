@@ -5,7 +5,7 @@ const appRoot = path.resolve(__dirname, "../")
 const Paths = {
   Root: appRoot,
   Src: path.resolve(appRoot, "src"),
-  Comps: path.resolve(appRoot, "src/components"),
+  Examples: path.resolve(appRoot, "examples"),
   Public: path.resolve(appRoot, "public"),
   DistUmd: path.resolve(appRoot, "dist/umd"),
   DistEsm: path.resolve(appRoot, "dist/esm"),

@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "strict": true,
     "paths": {
-      "@Src/*": ["src/*"]
+      "@Src/*": ["src/*"],
+      "@Examples/*": ["examples/*"],
     },
     "plugins": [
       {
@@ -23,6 +24,7 @@
     ]
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./examples/**/*"
   ]
 }

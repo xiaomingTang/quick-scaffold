@@ -2,7 +2,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import autoprefixer from "autoprefixer"
 
 import Paths from "./paths"
-import { isProduction } from "./Constants"
+import { isProduction } from "./constants"
 import webpack from "webpack"
 
 const styleLoader = isProduction ? MiniCssExtractPlugin.loader : "style-loader"
@@ -48,6 +48,7 @@ export const resolve: webpack.Configuration["resolve"] = {
   alias: {
     "react-dom": "@hot-loader/react-dom",
     "@Src": Paths.Src,
+    "@Examples": Paths.Examples,
   }
 }
 
@@ -62,7 +63,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
   {
     test: /\.[tj]sx?$/,
     include: [
-      Paths.Src,
+      Paths.Src, Paths.Examples,
     ],
     use: [
       "babel-loader",
@@ -81,7 +82,9 @@ export const rules: webpack.Configuration["module"]["rules"] = [
   },
   {
     test: /(?<!\.module)\.less$/,
-    include: Paths.Src,
+    include: [
+      Paths.Src, Paths.Examples,
+    ],
     use: [
       ...cssLoader,
       postcssLoader,
@@ -90,7 +93,9 @@ export const rules: webpack.Configuration["module"]["rules"] = [
   },
   {
     test: /\.module\.less$/,
-    include: Paths.Src,
+    include: [
+      Paths.Src, Paths.Examples,
+    ],
     use: [
       ...cssModuleLoader,
       postcssLoader,
@@ -99,7 +104,9 @@ export const rules: webpack.Configuration["module"]["rules"] = [
   },
   {
     test: /\.(png|jpg|jpeg|gif|ico)(\?.*)?$/i,
-    include: Paths.Src,
+    include: [
+      Paths.Src, Paths.Examples,
+    ],
     use: [{
       loader: "url-loader",
       options: {
@@ -110,7 +117,9 @@ export const rules: webpack.Configuration["module"]["rules"] = [
   },
   {
     test: /\.(otf|eot|svg|ttf|woff)(\?.*)?$/i,
-    include: Paths.Src,
+    include: [
+      Paths.Src, Paths.Examples,
+    ],
     use: [{
       loader: "url-loader",
       options: {
@@ -121,7 +130,9 @@ export const rules: webpack.Configuration["module"]["rules"] = [
   },
   {
     test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i,
-    include: Paths.Src,
+    include: [
+      Paths.Src, Paths.Examples,
+    ],
     loader: "url-loader",
     options: {
       limit: 8192,

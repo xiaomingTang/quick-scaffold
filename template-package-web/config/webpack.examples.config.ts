@@ -10,13 +10,13 @@ import commonWebpackConfig from "./webpack.common.config"
 import { optimization } from "./webpack-optimization"
 
 import Paths from "./paths"
-import { appName } from "./Constants"
+import { appName } from "./constants"
 
 const prodWebpackConfig = merge(commonWebpackConfig, {
   mode: "production",
   devtool: "cheap-module-source-map",
   entry: {
-    examples: path.resolve(Paths.Src, "examples/index.tsx"),
+    examples: path.resolve(Paths.Examples, "index.tsx"),
   },
   externals: {},
   output: {

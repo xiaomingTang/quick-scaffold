@@ -51,6 +51,7 @@ module.exports = {
             "alias": {
               "react-dom": "@hot-loader/react-dom",
               "@Src": path.resolve("./src"),
+              "@Examples": path.resolve("./examples"),
             },
           }
         }

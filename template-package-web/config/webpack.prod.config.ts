@@ -9,6 +9,7 @@ import { optimization } from "./webpack-optimization"
 import { convertToPascalCase } from "./utils"
 
 import Paths from "./paths"
+import { appName } from "./constants"
 
 const prodWebpackConfig = merge(commonWebpackConfig, {
   mode: "production",
@@ -20,7 +21,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
   output: {
     path: Paths.DistUmd,
     filename: "[name].js",
-    library: convertToPascalCase("<%= scaffoldConfig.projectName %>"),
+    library: convertToPascalCase(appName),
     libraryTarget: "umd",
   },
   plugins: [
