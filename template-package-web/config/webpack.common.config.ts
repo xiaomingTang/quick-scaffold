@@ -1,13 +1,7 @@
 import webpack from "webpack"
 
-import { getEnvConfig } from "./utils"
 import { isProduction } from "./constants"
 import { resolve, rules } from "./common-loaders"
-
-const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()).reduce((prev, [key, val]) => {
-  prev[`process.env.${key}`] = JSON.stringify(val)
-  return prev
-}, {})
 
 const commonWebpackConfig: webpack.Configuration = {
   // 使打印信息更精简
@@ -32,7 +26,6 @@ const commonWebpackConfig: webpack.Configuration = {
     new webpack.ProgressPlugin({
       activeModules: false,
     }),
-    new webpack.DefinePlugin(definePluginOption),
   ],
 }
 

@@ -12,7 +12,7 @@ import { optimization } from "./webpack-optimization"
 import Paths from "./paths"
 import { appName } from "./constants"
 
-const prodWebpackConfig = merge(commonWebpackConfig, {
+const examplesWebpackConfig = merge(commonWebpackConfig, {
   mode: "production",
   devtool: "cheap-module-source-map",
   entry: {
@@ -49,4 +49,4 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
   optimization,
 })
 
-export default prodWebpackConfig
+export default examplesWebpackConfig

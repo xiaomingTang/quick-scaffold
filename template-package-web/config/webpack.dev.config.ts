@@ -1,7 +1,6 @@
 import path from "path"
 import webpack from "webpack"
 import HtmlWebpackPlugin from "html-webpack-plugin"
-import CopyPlugin from "copy-webpack-plugin"
 
 import { HotModuleReplacementPlugin } from "webpack"
 import { merge } from "webpack-merge"
@@ -9,6 +8,12 @@ import { merge } from "webpack-merge"
 import Paths from "./paths"
 import { appName } from "./constants"
 import commonWebpackConfig from "./webpack.common.config"
+import { getEnvConfig } from "./utils"
+
+const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()).reduce((prev, [key, val]) => {
+  prev[`process.env.${key}`] = JSON.stringify(val)
+  return prev
+}, {})
 
 const devWebpackConfig = merge(commonWebpackConfig, {
   mode: "development",
@@ -55,6 +60,7 @@ const devWebpackConfig = merge(commonWebpackConfig, {
       chunks: ["examples"],
       // hash: true, // 不 hash
     }) as unknown as webpack.Plugin,
+    new webpack.DefinePlugin(definePluginOption),
   ]
 })
 
