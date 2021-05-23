@@ -11,11 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const init_1 = require("./commands/init");
+const utils_1 = require("./utils");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield init_1.init();
     });
 }
 if (require.main === module) {
+    const { version } = require(utils_1.resolveProject("package.json"));
+    utils_1.log.success(`version: ${version}`);
     main();
 }
