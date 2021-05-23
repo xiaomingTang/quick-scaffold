@@ -54,16 +54,25 @@ export const resolve: webpack.Configuration["resolve"] = {
 
 export const rules: webpack.Configuration["module"]["rules"] = [
   {
-    test: /\.m?js$/,
-    // resolve: {
-    //   // 修复 webpack5 的 mjs 相关的 bug (具体我也忘了, 因为 react-hot-loader 在 webpack5 下 not working, 所以已经启用 webpack5 了...)
-    //   fullySpecified: false
-    // }
+    test: /\.[tj]sx?$/,
+    include: [
+      Paths.Src,
+    ],
+    use: [
+      "babel-loader",
+      {
+        loader: "ts-loader",
+        options: {
+          transpileOnly: !isProduction, // 要生成.d.ts文件就不能开启该选项
+          configFile: "tsconfig-for-build.json"
+        },
+      },
+    ],
   },
   {
     test: /\.[tj]sx?$/,
     include: [
-      Paths.Src, Paths.Examples,
+      Paths.Examples,
     ],
     use: [
       "babel-loader",
@@ -71,6 +80,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
         loader: "ts-loader",
         options: {
           transpileOnly: true, // 要生成.d.ts文件就不能开启该选项
+          configFile: "tsconfig-for-build.json"
         },
       },
     ],
