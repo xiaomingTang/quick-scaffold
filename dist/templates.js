@@ -15,6 +15,10 @@ exports.templates = [
         title: "node package",
         rootPath: utils_1.resolveProject("template-package-node"),
     },
+    {
+        title: "tampermonkey",
+        rootPath: utils_1.resolveProject("template-tampermonkey"),
+    },
 ];
 exports.templateTypes = exports.templates.map(({ title }) => title);
 function getTemplateFromTitle(title) {

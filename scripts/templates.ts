@@ -18,6 +18,10 @@ export const templates: Template[] = [
     title: "node package",
     rootPath: resolveProject("template-package-node"),
   },
+  {
+    title: "tampermonkey",
+    rootPath: resolveProject("template-tampermonkey"),
+  },
 ]
 
 export const templateTypes = templates.map(({ title }) => title)
