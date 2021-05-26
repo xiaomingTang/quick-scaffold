@@ -8,7 +8,7 @@ import Paths from "./paths"
 import { isMeansTrue } from "./utils"
 import { packageJson } from "./constants"
 
-const devConfig: webpack.Configuration = merge(commonConfig, {
+const devConfig = merge(commonConfig, {
   devServer: {
     contentBase: Paths.Dist,
     https: isMeansTrue(process.env.https),
@@ -28,7 +28,7 @@ const devConfig: webpack.Configuration = merge(commonConfig, {
       inject: "body",
       chunks: ["index"],
       favicon: path.join(Paths.Public, "favicon.ico"),
-    }),
+    }) as unknown as webpack.Plugin,
     new HotModuleReplacementPlugin(),
   ],
 })

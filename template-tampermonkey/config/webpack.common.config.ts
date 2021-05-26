@@ -1,4 +1,5 @@
 import webpack from "webpack"
+import WebpackDevServer from "webpack-dev-server"
 import path from "path"
 
 import { resolve, rules } from "./common-loaders"
@@ -15,7 +16,9 @@ const definePluginOption: OptionItem = Object.entries(getEnvConfig()).reduce((pr
   [`process.env.${key}`]: JSON.stringify(val),
 }), ({} as OptionItem))
 
-const config: webpack.Configuration = {
+const config: webpack.Configuration & {
+  devServer?: WebpackDevServer.Configuration;
+} = {
   mode: isProduction ? "production" : "development",
   devtool: isProduction ? false : "inline-cheap-module-source-map",
   entry: {

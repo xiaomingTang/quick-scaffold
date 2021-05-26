@@ -1,3 +1,4 @@
+import webpack from "webpack"
 import { merge } from "webpack-merge"
 import { CleanWebpackPlugin } from "clean-webpack-plugin"
 import clipboardy from "clipboardy"
@@ -17,7 +18,7 @@ const prodConfig = merge(commonConfig, {
       verbose: true,
       // dry: true,
       cleanOnceBeforeBuildPatterns: ["index.html", "packages/scripts/*"],
-    }),
+    }) as unknown as webpack.Plugin,
     new InjectStringWebpackPlugin({
       test: /packages[/\\]scripts[/\\]index\..*js/g,
       prefix,
