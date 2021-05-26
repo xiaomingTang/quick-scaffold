@@ -23,7 +23,7 @@ ReactDOM.render(
   >
     <MuiThemeProviderFixHtmlFontSize>
       <SnackbarProvider
-        variant="info"
+        variant="default"
         maxSnack={3}
         autoHideDuration={2500}
         anchorOrigin={{
