@@ -1,5 +1,5 @@
 # <%= scaffoldConfig.projectName %>
-模板来自 [quick-scaffold template-package-node](https://github.com/xiaomingTang/quick-scaffold)
+模板来自 [quick-scaffold](https://github.com/xiaomingTang/quick-scaffold) -> [node package](https://github.com/xiaomingTang/quick-scaffold/template-package-node/README.md)
 
 <%= scaffoldConfig.description %>
 

@@ -1,5 +1,5 @@
 # <%= scaffoldConfig.projectName %>
-模板来自 [quick-scaffold template-web-page-react](https://github.com/xiaomingTang/quick-scaffold)
+模板来自 [quick-scaffold](https://github.com/xiaomingTang/quick-scaffold) -> [web page of react](https://github.com/xiaomingTang/quick-scaffold/template-web-page-react/README.md)
 
 <%= scaffoldConfig.description %>
 
