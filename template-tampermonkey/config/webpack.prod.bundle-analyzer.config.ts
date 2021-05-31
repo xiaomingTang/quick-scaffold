@@ -10,7 +10,7 @@ const bundleConfig = merge(prodConfig, {
     new BundleAnalyzerPlugin({
       // treemap sizes 为 parsed 时, bundle 分析页不会展示各项的详细信息
       // defaultSizes: "parsed"
-    }) as any as webpack.Plugin,
+    }) as unknown as webpack.Plugin,
   ],
 })
 

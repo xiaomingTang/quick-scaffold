@@ -23,7 +23,6 @@ module.exports = {
     "@typescript-eslint/no-parameter-properties": "off",
     "import/named": "off",
     "import/prefer-default-export": "off",
-    // "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     // 关闭换行风格检测

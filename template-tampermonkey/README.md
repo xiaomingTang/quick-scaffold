@@ -1,5 +1,5 @@
 # <%= scaffoldConfig.projectName %>
-模板来自 [quick-scaffold](https://github.com/xiaomingTang/quick-scaffold) -> [tampermonkey](https://github.com/xiaomingTang/quick-scaffold/template-tampermonkey/README.md)
+模板来自 [quick-scaffold](https://github.com/xiaomingTang/quick-scaffold) -> [tampermonkey](https://github.com/xiaomingTang/quick-scaffold/tree/master/template-tampermonkey)
 
 <%= scaffoldConfig.description %>
 

@@ -23,8 +23,7 @@
     "bundle": "     cross-env NODE_ENV=production  TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.bundle-analyzer.config.ts",
     "lint": "       eslint src       --ext .ts --ext .tsx",
     "lint:fix": "   eslint src --fix --ext .ts --ext .tsx",
-    "http": "       http-server ./dist",
-    "https": "      http-server ./dist -S -C ./server/cert/cert.pem -K ./server/cert/key.pem"
+    "http": "       http-server ./dist"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
@@ -73,7 +72,7 @@
     "@types/throttle-debounce": "^2.1.0",
     "@types/webpack": "^4.39.8",
     "@types/webpack-dev-server": "^3.11.1",
-    "@types/webpack-merge": "^4.1.5",
+    "@types/webpack-merge": "^5.0.0",
     "@types/workbox-webpack-plugin": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",

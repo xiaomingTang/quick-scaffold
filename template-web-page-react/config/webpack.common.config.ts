@@ -1,5 +1,6 @@
 import path from "path"
 import webpack from "webpack"
+import WebpackDevServer from "webpack-dev-server"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 
 import { getEnvConfig } from "./utils"
@@ -12,7 +13,9 @@ const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()
   return prev
 }, {})
 
-const commonWebpackConfig: webpack.Configuration = {
+const commonWebpackConfig: webpack.Configuration & {
+  devServer?: WebpackDevServer.Configuration;
+} = {
   mode: isProduction ? "production" : "development",
   devtool: isProduction ? false : "inline-cheap-module-source-map",
   // 使输出更精简

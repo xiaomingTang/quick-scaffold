@@ -2,5 +2,3 @@
 **/*.ts
 !src/**/*.ts
 !test/**/*.ts
-# .d.ts 文件也用 eslint 限制吧
-# **/*.d.ts

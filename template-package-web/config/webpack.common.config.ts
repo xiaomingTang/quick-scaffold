@@ -1,9 +1,12 @@
 import webpack from "webpack"
+import WebpackDevServer from "webpack-dev-server"
 
 import { isProduction } from "./constants"
 import { resolve, rules } from "./common-loaders"
 
-const commonWebpackConfig: webpack.Configuration = {
+const commonWebpackConfig: webpack.Configuration & {
+  devServer?: WebpackDevServer.Configuration;
+} = {
   // 使打印信息更精简
   stats: "errors-warnings",
   output: {

@@ -25,7 +25,7 @@ function App() {
     const MessageKey = randomMessageKey()
     return enqueueSnackbar(<SimpleText>{s}</SimpleText>, {
       key: MessageKey,
-      autoHideDuration: 1000,
+      autoHideDuration: 2000,
       action: <CloseIconButton onClick={() => closeSnackbar(MessageKey)} />,
       ...options,
     })
