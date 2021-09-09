@@ -7,12 +7,6 @@ import WebpackDevServer from "webpack-dev-server"
 import Paths from "./paths"
 import { appName } from "./constants"
 import commonWebpackConfig from "./webpack.common.config"
-import { getEnvConfig } from "./utils"
-
-const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()).reduce((prev, [key, val]) => {
-  prev[`process.env.${key}`] = JSON.stringify(val)
-  return prev
-}, {})
 
 const devServer: WebpackDevServer.Configuration = {
   static: Paths.DistExample,
@@ -56,7 +50,6 @@ const devWebpackConfig = merge(commonWebpackConfig, {
       inject: "body",
       chunks: ["examples"],
     }),
-    new webpack.DefinePlugin(definePluginOption),
   ]
 })
 
