@@ -1,7 +1,7 @@
 {
   "name": "quick-scaffold",
   "description": "一个用于快速构建 web page, web package, node package, tampermonkey 的脚手架",
-  "version": "2.13.3",
+  "version": "2.13.4",
   "bin": {
     "quick-scaffold": "dist/index"
   },
