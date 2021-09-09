@@ -19,11 +19,11 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "          cross-env NODE_ENV=development LIB_TARGET=development TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
-    "build:examples": " cross-env NODE_ENV=production  LIB_TARGET=examples    TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.examples.config.ts",
-    "build:umd": "      cross-env NODE_ENV=production  LIB_TARGET=umd         TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.umd.config.ts",
-    "build:esm": "      cross-env NODE_ENV=production  LIB_TARGET=esm         TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.esm.config.ts",
-    "build:cjs": "      cross-env NODE_ENV=production  LIB_TARGET=cjs         TS_NODE_PROJECT=\"config/tsconfig-for-webpack-config.json\" webpack            --config ./config/webpack.prod.cjs.config.ts",
+    "start": "          cross-env NODE_ENV=development LIB_TARGET=development TS_NODE_PROJECT=\"tsconfig.for-webpack.json\" webpack-dev-server --config ./config/webpack.dev.config.ts",
+    "build:examples": " cross-env NODE_ENV=production  LIB_TARGET=examples    TS_NODE_PROJECT=\"tsconfig.for-webpack.json\" webpack            --config ./config/webpack.prod.examples.config.ts",
+    "build:umd": "      cross-env NODE_ENV=production  LIB_TARGET=umd         TS_NODE_PROJECT=\"tsconfig.for-webpack.json\" webpack            --config ./config/webpack.prod.umd.config.ts",
+    "build:esm": "      cross-env NODE_ENV=production  LIB_TARGET=esm         TS_NODE_PROJECT=\"tsconfig.for-webpack.json\" webpack            --config ./config/webpack.prod.esm.config.ts",
+    "build:cjs": "      cross-env NODE_ENV=production  LIB_TARGET=cjs         TS_NODE_PROJECT=\"tsconfig.for-webpack.json\" webpack            --config ./config/webpack.prod.cjs.config.ts",
     "build": "          yarn run build:umd & yarn run build:cjs & yarn run build:esm & yarn run build:examples",
     "lint": "           eslint src       --ext .ts --ext .tsx",
     "lint:fix": "       eslint src --fix --ext .ts --ext .tsx"

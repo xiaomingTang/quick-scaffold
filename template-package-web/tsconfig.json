@@ -6,8 +6,8 @@
     "outDir": "./dist",
     "sourceMap": true,
     "declaration": true,
-    "module": "ESNext",
-    "target": "ES2018",
+    "module": "esnext",
+    "target": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
     "allowJs": true,
@@ -15,12 +15,7 @@
     "paths": {
       "@Src/*": ["src/*"],
       "@Examples/*": ["examples/*"],
-    },
-    "plugins": [
-      {
-        "transform": "@zerollup/ts-transform-paths"
-      }
-    ]
+    }
   },
   "include": [
     "./src/**/*",
