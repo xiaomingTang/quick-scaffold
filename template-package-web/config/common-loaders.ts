@@ -10,7 +10,7 @@ const styleLoader = isProduction ? MiniCssExtractPlugin.loader : "style-loader"
 const cssLoader = [
   styleLoader,
   "css-loader",
-].filter(Boolean)
+]
 
 const cssModuleLoader = [
   styleLoader,
@@ -18,11 +18,11 @@ const cssModuleLoader = [
     loader: "css-loader",
     options: {
       modules: {
-        localIdentName: "[local]_[hash:base64:5]",
+        localIdentName: "[local]_[contenthash:5]",
       },
       importLoaders: 2,
       localsConvention: "camelCase",
-      sourceMap: !isProduction,
+      sourceMap: true,
     }
   },
 ]
@@ -30,18 +30,28 @@ const cssModuleLoader = [
 const postcssLoader = {
   loader: "postcss-loader",
   options: {
-    plugins: [
-      autoprefixer,
-    ]
-  }
+    postcssOptions: {
+      plugins: [
+        autoprefixer,
+      ],
+    },
+  },
 }
 
 const lessLoader = {
   loader: "less-loader",
   options: {
-    sourceMap: !isProduction
+    sourceMap: true,
   }
 }
+
+const tsConfigFileMap = {
+  umd: "tsconfig.prod.umd.json",
+  esm: "tsconfig.prod.esm.json",
+  cjs: "tsconfig.prod.cjs.json",
+  examples: "tsconfig.prod.examples.json",
+}
+const tsConfigFilePath = tsConfigFileMap[process.env.LIB_TARGET] || "tsconfig.prod.base.json"
 
 export const resolve: webpack.Configuration["resolve"] = {
   extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
@@ -64,7 +74,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
         loader: "ts-loader",
         options: {
           transpileOnly: !isProduction, // 要生成.d.ts文件就不能开启该选项
-          configFile: "tsconfig-for-build.json"
+          configFile: tsConfigFilePath
         },
       },
     ],
@@ -80,7 +90,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
         loader: "ts-loader",
         options: {
           transpileOnly: true, // 要生成.d.ts文件就不能开启该选项
-          configFile: "tsconfig-for-build.json"
+          configFile: tsConfigFilePath
         },
       },
     ],
@@ -121,7 +131,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       loader: "url-loader",
       options: {
         limit: 8192,
-        name: "static/images/[name].[hash:5].[ext]"
+        name: "static/images/[name].[contenthash:5].[ext]"
       }
     }]
   },
@@ -134,7 +144,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       loader: "url-loader",
       options: {
         limit: 8192,
-        name: "static/fonts/[name].[hash:5].[ext]"
+        name: "static/fonts/[name].[contenthash:5].[ext]"
       }
     }]
   },
@@ -146,7 +156,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
     loader: "url-loader",
     options: {
       limit: 8192,
-      name: "static/medias/[name].[hash:5].[ext]" // 文件名
+      name: "static/medias/[name].[contenthash:5].[ext]" // 文件名
     }
   },
 ]

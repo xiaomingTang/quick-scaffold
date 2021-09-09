@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.prod.base.json",
+  "compilerOptions": {
+    "module": "umd",
+    "outDir": "./dist/umd"
+  }
+}

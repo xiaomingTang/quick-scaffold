@@ -41,7 +41,7 @@ export function getEnvConfig(): EnvConfig {
 
   Object.entries(envConfig).forEach(([key, val]) => {
     if (typeof val !== "string") {
-      errors.push(`envConfig.${key} must be string, not ${typeof val}`)
+      errors.push(`envConfig.${key} must be string, not "${typeof val}"`)
     }
   })
 

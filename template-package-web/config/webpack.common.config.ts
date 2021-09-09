@@ -1,12 +1,18 @@
 import webpack from "webpack"
-import WebpackDevServer from "webpack-dev-server"
 
 import { isProduction } from "./constants"
+import { getEnvConfig } from "./utils"
 import { resolve, rules } from "./common-loaders"
 
-const commonWebpackConfig: webpack.Configuration & {
-  devServer?: WebpackDevServer.Configuration;
-} = {
+const definePluginOptions = Object.fromEntries(
+  Object.entries(getEnvConfig()).map(([key, value]) => {
+      process.env[key] = value
+      return [`process.env.${key}`, JSON.stringify(value)]
+    }
+  )
+)
+
+const commonWebpackConfig: webpack.Configuration = {
   // 使打印信息更精简
   stats: "errors-warnings",
   output: {
@@ -23,12 +29,13 @@ const commonWebpackConfig: webpack.Configuration & {
     rules,
   },
   plugins: [
-    new webpack.WatchIgnorePlugin([
-      /\.d\.ts$/,
-    ]),
+    new webpack.WatchIgnorePlugin({
+      paths: [ /\.d\.ts$/ ]
+    }),
     new webpack.ProgressPlugin({
       activeModules: false,
     }),
+    new webpack.DefinePlugin(definePluginOptions)
   ],
 }
 

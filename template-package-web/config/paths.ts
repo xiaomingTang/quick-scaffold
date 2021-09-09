@@ -8,6 +8,7 @@ const Paths = {
   Examples: path.resolve(appRoot, "examples"),
   Public: path.resolve(appRoot, "public"),
   DistUmd: path.resolve(appRoot, "dist/umd"),
+  DistCjs: path.resolve(appRoot, "dist/cjs"),
   DistEsm: path.resolve(appRoot, "dist/esm"),
   DistExample: path.resolve(appRoot, "dist-examples"),
   Config: path.resolve(appRoot, "config"),

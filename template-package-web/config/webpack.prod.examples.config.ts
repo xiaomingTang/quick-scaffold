@@ -1,5 +1,4 @@
 import path from "path"
-import webpack from "webpack"
 import { merge } from "webpack-merge"
 
 import { CleanWebpackPlugin } from "clean-webpack-plugin"
@@ -11,6 +10,9 @@ import { optimization } from "./webpack-optimization"
 
 import Paths from "./paths"
 import { appName } from "./constants"
+import { log } from "./utils"
+
+log.info('generating examples...')
 
 const examplesWebpackConfig = merge(commonWebpackConfig, {
   mode: "production",
@@ -19,34 +21,26 @@ const examplesWebpackConfig = merge(commonWebpackConfig, {
     examples: path.resolve(Paths.Examples, "index.tsx"),
   },
   externals: {},
+  optimization,
   output: {
     path: Paths.DistExample,
     filename: "[name].js",
   },
   plugins: [
-    ...commonWebpackConfig.plugins,
-    // 该版本类型暂未适配 webpack@5
     new CleanWebpackPlugin({
       verbose: true,
-      // dry: true,
-      // cleanOnceBeforeBuildPatterns: [
-      //   "*.js",
-      // ],
-    }) as unknown as webpack.Plugin,
-    // 该版本类型暂未适配 webpack@5
+    }),
     new HtmlWebpackPlugin({
       template: path.join(Paths.Public, "examples.html"),
       filename: "examples.html",
       title: appName,
       inject: "body",
       chunks: ["examples"],
-      // hash: true, // 不 hash
-    }) as unknown as webpack.Plugin,
+    }),
     new MiniCssExtractPlugin({
-      filename: "static/styles/[name].[hash:6].css",
+      filename: "static/styles/[name].[contenthash:5].css",
     }),
   ],
-  optimization,
 })
 
 export default examplesWebpackConfig

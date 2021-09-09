@@ -6,7 +6,9 @@ export interface EnvConfig {
 }
 
 /**
- * 警告!!! 你不应在 src/ 目录下访问此处定义的环境变量, 因为 src/ 目录下的内容将会打包为 npm 包, 使用者的环境下不一定会存在该环境变量
+ * 警告!!! 该对象下所有 key-value 基于 webpack.DefinePlugin, 将会在打包的时候将所有 process.env.KEY 替换为相应的 value(简单的字符映射)
+ *
+ * 因此, 如果环境将会被客户端访问, 则不建议将私有变量(如数据库连接密码等)放在此处
  *
  * 你可以额外在该文件所在目录下新建 .env.local.ts 文件, 用于添加本地的环境配置
  *
