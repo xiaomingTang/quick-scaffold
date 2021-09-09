@@ -3,18 +3,14 @@ import { merge } from "webpack-merge"
 
 import commonWebpackConfig from "./webpack.common.config"
 import Paths from "./paths"
-import { isMeansTrue } from "./utils"
 
 const devWebpackConfig = merge(commonWebpackConfig, {
   devServer: {
-    contentBase: Paths.Dist,
-    https: isMeansTrue(process.env.https),
-    host: "0.0.0.0",
+    static: Paths.Dist,
+    host: "local-ip",
     port: 8080,
-    useLocalIp: true,
     hot: true,
-    open: isMeansTrue(process.env.open),
-    openPage: "./index.html",
+    open: "./index.html",
     // 开发时代理, 可解决开发时跨域问题
     proxy: [
       {
@@ -28,7 +24,6 @@ const devWebpackConfig = merge(commonWebpackConfig, {
     ],
   },
   plugins: [
-    ...commonWebpackConfig.plugins,
     new HotModuleReplacementPlugin(),
   ]
 })

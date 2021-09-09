@@ -48,7 +48,7 @@ module.exports = {
           ["react-dom", "@hot-loader/react-dom"],
           ["@Src", path.resolve("./src")],
         ],
-        "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"],
+        "extensions": [".ts", ".tsx", ".json"],
       },
     },
     "react": {

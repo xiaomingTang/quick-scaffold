@@ -21,12 +21,11 @@ const dllWebpackConfig: webpack.Configuration = {
     // 如果需要修改, 必须配合下面的CleanWebpackPlugin一起修改
     // 谨慎!!! 再谨慎!!!
     path: Paths.Dll,
-    filename: "scripts/[name].[hash:5].js",
+    filename: "scripts/[name].[contenthash:5].js",
     // 存放动态链接库的全局变量名称
     library: `${DLL_VAR_PREFIX}[name]`,
   },
   plugins: [
-    // 该版本类型暂未适配 webpack@5
     new CleanWebpackPlugin({
       verbose: true,
       // dry: true,
@@ -35,7 +34,7 @@ const dllWebpackConfig: webpack.Configuration = {
       // 为了防止放了有用的文件在 output.path 下又忘记了, 导致不小心删掉
       // 干脆就明确指定移除特定文件了
       cleanOnceBeforeBuildPatterns: ["scripts/*.js", "manifest/*.json"],
-    }) as unknown as webpack.Plugin,
+    }),
 
     new webpack.DllPlugin({
       context: __dirname,

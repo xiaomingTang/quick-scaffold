@@ -10,7 +10,7 @@ const styleLoader = isProduction ? MiniCssExtractPlugin.loader : "style-loader"
 const cssLoader = [
   styleLoader,
   "css-loader",
-].filter(Boolean)
+]
 
 const cssModuleLoader = [
   styleLoader,
@@ -18,11 +18,11 @@ const cssModuleLoader = [
     loader: "css-loader",
     options: {
       modules: {
-        localIdentName: isProduction ? "[hash:base64:6]" : "[local]_[hash:base64:5]",
+        localIdentName: isProduction ? "[contenthash:5]" : "[local]_[contenthash:5]",
         exportLocalsConvention: "camelCase",
       },
       importLoaders: 2,
-      sourceMap: !isProduction,
+      sourceMap: true,
     }
   },
 ]
@@ -30,16 +30,18 @@ const cssModuleLoader = [
 const postcssLoader = {
   loader: "postcss-loader",
   options: {
-    plugins: [
-      autoprefixer,
-    ]
+    postcssOptions: {
+      plugins: [
+        autoprefixer,
+      ],
+    },
   }
 }
 
 const lessLoader = {
   loader: "less-loader",
   options: {
-    sourceMap: !isProduction
+    sourceMap: true
   }
 }
 
@@ -52,13 +54,6 @@ export const resolve: webpack.Configuration["resolve"] = {
 }
 
 export const rules: webpack.Configuration["module"]["rules"] = [
-  {
-    test: /\.m?js$/,
-    // resolve: {
-    //   // 修复 webpack5 的 mjs 相关的 bug (具体我也忘了, 因为 react-hot-loader 在 webpack5 下 not working, 所以已经启用 webpack5 了...)
-    //   fullySpecified: false
-    // }
-  },
   {
     test: /\.[tj]sx?$/,
     include: [
@@ -106,7 +101,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       loader: "url-loader",
       options: {
         limit: 8192,
-        name: "packages/images/[name].[hash:5].[ext]"
+        name: "packages/images/[name].[contenthash:5].[ext]"
       }
     }]
   },
@@ -117,7 +112,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       loader: "url-loader",
       options: {
         limit: 8192,
-        name: "packages/fonts/[name].[hash:5].[ext]"
+        name: "packages/fonts/[name].[contenthash:5].[ext]"
       }
     }]
   },
@@ -127,7 +122,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
     loader: "url-loader",
     options: {
       limit: 8192,
-      name: "packages/medias/[name].[hash:5].[ext]" // 文件名
+      name: "packages/medias/[name].[contenthash:5].[ext]" // 文件名
     }
   },
 ]

@@ -8,10 +8,13 @@ import Paths from "./paths"
 import { isProduction, appName } from "./constants"
 import { resolve, rules } from "./common-loaders"
 
-const definePluginOption: Record<string, string> = Object.entries(getEnvConfig()).reduce((prev, [key, val]) => {
-  prev[`process.env.${key}`] = JSON.stringify(val)
-  return prev
-}, {})
+const definePluginOptions = Object.fromEntries(
+  Object.entries(getEnvConfig()).map(([key, value]) => {
+      process.env[key] = value
+      return [`process.env.${key}`, JSON.stringify(value)]
+    }
+  )
+)
 
 const commonWebpackConfig: webpack.Configuration & {
   devServer?: WebpackDevServer.Configuration;
@@ -33,9 +36,9 @@ const commonWebpackConfig: webpack.Configuration & {
     // 开发环境用 "./" 貌似会出错, 导致 index.html 都打不开, 估计又是路径拼接的问题(估计没使用 path.join, 而是用的其他的方法), 所以开发环境要使用 "/"
     publicPath: isProduction ? "./" : "/",
     path: Paths.Dist,
-    filename: "packages/scripts/[name].[hash:5].js",
+    filename: "packages/scripts/[name].[contenthash:5].js",
     chunkFilename: isProduction
-      ? "packages/scripts/chunk-[name].[hash:5].js"
+      ? "packages/scripts/chunk-[name].[contenthash:5].js"
       : "packages/scripts/chunk-[name].js"
   },
   resolve,
@@ -43,7 +46,6 @@ const commonWebpackConfig: webpack.Configuration & {
     rules,
   },
   plugins: [
-    // 该版本类型暂未适配 webpack@5
     new HtmlWebpackPlugin({
       template: path.join(Paths.Public, "index.html"),
       filename: `index.html`,
@@ -51,19 +53,20 @@ const commonWebpackConfig: webpack.Configuration & {
       inject: "body",
       chunks: ["index"],
       favicon: path.join(Paths.Public, "favicon.ico"),
-      // hash: true, // 不 hash
       meta: {
         keywords: "",
         description: "<%= scaffoldConfig.description %>",
       },
-    }) as unknown as webpack.Plugin,
-    new webpack.WatchIgnorePlugin([
-      /\.d\.ts$/, Paths.Dist, Paths.NodeModule,
-    ]),
+    }),
+    new webpack.WatchIgnorePlugin({
+      paths: [
+        /\.d\.ts$/, Paths.Dist, Paths.NodeModule,
+      ]
+    }),
     new webpack.ProgressPlugin({
       activeModules: false,
     }),
-    new webpack.DefinePlugin(definePluginOption),
+    new webpack.DefinePlugin(definePluginOptions),
   ],
 }
 

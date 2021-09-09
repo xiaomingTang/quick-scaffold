@@ -2,10 +2,9 @@ import TerserPlugin from "terser-webpack-plugin"
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin"
 import webpack from "webpack"
 
-export const optimization: webpack.Options.Optimization = {
+export const optimization: webpack.WebpackOptionsNormalized['optimization'] = {
   minimizer: [
     new TerserPlugin({
-      // exclude: /\.min\.js$/, // 过滤掉以".min.js"结尾的文件，我们认为这个后缀本身就是已经压缩好的代码，没必要进行二次压缩
       parallel: true, // 开启并行压缩，充分利用 cpu
       extractComments: false, // 不保留 @license @preserve 等信息
       terserOptions: {
@@ -19,6 +18,7 @@ export const optimization: webpack.Options.Optimization = {
         sourceMap: false, // 不保留 sourceMap
       }
     }),
+    // 该版本类型暂未适配 webpack@5
     new OptimizeCSSAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessorOptions: {
@@ -30,6 +30,6 @@ export const optimization: webpack.Options.Optimization = {
         }
       },
       canPrint: true
-    }),
+    }) as webpack.WebpackPluginInstance,
   ],
 }

@@ -28,8 +28,6 @@ const { pwaDisplayMode } = getEnvConfig()
 
 const prodWebpackConfig = merge(commonWebpackConfig, {
   plugins: [
-    ...commonWebpackConfig.plugins,
-    // 该版本类型暂未适配 webpack@5
     new CleanWebpackPlugin({
       verbose: true,
       // dry: true,
@@ -39,11 +37,10 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
         "manifest/*", "manifest.json", "manifest.*.json",
         "packages/scripts/*", "packages/styles/*",
       ],
-    }) as unknown as webpack.Plugin,
-    // 该版本类型暂未适配 webpack@5
+    }),
     new MiniCssExtractPlugin({
-      filename: "packages/styles/[name].[hash:5].css",
-    }) as unknown as webpack.Plugin,
+      filename: "packages/styles/[name].[contenthash:5].css",
+    }),
     new webpack.DllReferencePlugin({
       context: __dirname,
       name: `${DLL_VAR_PREFIX}${baseDllEntryName}`,
@@ -65,7 +62,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
       // 该组件会使用 webpack output.publicPath 属性
       // 而 webpack5 output.publicPath 默认值为 "auto"(而非 "/" 或 "./")
       // 如果使用 webpack5, 要注意这个问题
-      filename: "manifest.[hash:5].json",
+      filename: "manifest.[contenthash:5].json",
       name: "<%= scaffoldConfig.projectName %>",
       short_name: "<%= scaffoldConfig.projectName %>",
       description: "<%= scaffoldConfig.description %>",
@@ -88,7 +85,7 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
           destination: "manifest/icons/android",
         },
       ],
-    }),
+    }) as webpack.WebpackPluginInstance,
     new GenerateSW({
       // 这些选项帮助快速启用 ServiceWorkers
       // 不允许遗留任何“旧的” ServiceWorkers

@@ -31,6 +31,19 @@ export function getEnvConfig(): EnvConfig {
     log.warn(".env.local.ts 文件不存在, 或未导出 envConfig 变量; 将注入 .env.ts 内的环境变量")
   }
 
+  const errors: string[] = []
+
+  Object.entries(envConfig).forEach(([key, val]) => {
+    if (typeof val !== "string") {
+      errors.push(`envConfig.${key} must be string, not "${typeof val}"`)
+    }
+  })
+
+  if (errors.length > 0) {
+    log.error(errors.join("\n"))
+    throw new Error("wrong envConfig")
+  }
+
   return envConfig
 }
 

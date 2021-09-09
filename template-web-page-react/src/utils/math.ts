@@ -1,8 +1,4 @@
-function assert(conditions: boolean, message?: string): void {
-  if (!conditions) {
-    throw new Error(message || "Assertion failed!")
-  }
-}
+import { assert } from "."
 
 /**
  * 返回一个位于 min ~ max 之间的整数

@@ -2,8 +2,8 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { Divider } from "antd"
 import { useTranslation } from "react-i18next"
+import { useRandomSoftColors } from "xiaoming-hooks"
 
-import { useRandomSoftColors } from "@Src/utils"
 import SwitchLang from "@Src/components/SwitchLang"
 import SwitchTransitionType from "@Src/components/SwitchTransitionType"
 

@@ -5,12 +5,12 @@
     "baseUrl": ".",
     "outDir": "./dist",
     "sourceMap": true,
-    "module": "ESNext",
-    "target": "ES2018",
-    "jsx": "preserve",
+    "declaration": true,
+    "module": "esnext",
+    "target": "esnext",
+    "jsx": "react",
     "moduleResolution": "node",
     "allowJs": true,
-    "resolveJsonModule": true,
     "strict": true,
     "paths": {
       "@Src/*": ["src/*"]

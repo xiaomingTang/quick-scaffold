@@ -1,21 +1,21 @@
 import { hot } from "react-hot-loader/root"
-import React from "react"
+import React, { Suspense } from "react"
 import { Provider, useSelector } from "react-redux"
 import {
   HashRouter as Router, Switch, Route, useLocation,
 } from "react-router-dom"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 
-import "@Src/pages/Global"
-import { Pwa } from "@Src/pages/Global/pwa"
+import { Pwa } from "@Src/pwa"
 
 import store, { State } from "@Src/store/index"
 import { PageContainer } from "@Src/components/PageContainer"
 import { transitionClassNameMap } from "@Src/components/Transitions"
+import { Loading } from "@Src/components/Fallback"
 
-import NotFound from "./NotFound"
-import Home from "./Home"
-import About from "./About"
+const About = React.lazy(() => import(/* webpackChunkName: "About" */"@Src/pages/About"))
+const Home = React.lazy(() => import(/* webpackChunkName: "Home" */"@Src/pages/Home"))
+const NotFound = React.lazy(() => import(/* webpackChunkName: "NotFound" */"@Src/pages/NotFound"))
 
 function Contents() {
   const location = useLocation()
@@ -31,17 +31,23 @@ function Contents() {
       <Switch location={location}>
         <Route exact sensitive path="/about">
           <PageContainer>
-            <About />
+            <Suspense fallback={<Loading />}>
+              <About />
+            </Suspense>
           </PageContainer>
         </Route>
         <Route exact sensitive path="/">
           <PageContainer>
-            <Home />
+            <Suspense fallback={<Loading />}>
+              <Home />
+            </Suspense>
           </PageContainer>
         </Route>
         <Route path="*">
           <PageContainer>
-            <NotFound />
+            <Suspense fallback={<Loading />}>
+              <NotFound />
+            </Suspense>
           </PageContainer>
         </Route>
       </Switch>
