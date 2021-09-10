@@ -6,7 +6,7 @@
     "outDir": "./dist",
     "sourceMap": true,
     "declaration": true,
-    "module": "ES6",
+    "module": "esnext",
     "target": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
