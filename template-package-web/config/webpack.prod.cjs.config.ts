@@ -8,7 +8,7 @@ import { appName } from "./constants"
 
 const PascalCaseName = convertToPascalCase(appName)
 
-log.info('generating cjs...')
+log.info("generating cjs...")
 
 const cjsWebpackConfig = merge(prodWebpackConfig, {
   output: {
@@ -16,7 +16,7 @@ const cjsWebpackConfig = merge(prodWebpackConfig, {
     filename: "[name].js",
     library: {
       name: PascalCaseName,
-      type: 'commonjs',
+      type: "commonjs",
     },
   },
   plugins: [

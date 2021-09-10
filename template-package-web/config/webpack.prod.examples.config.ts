@@ -12,7 +12,7 @@ import Paths from "./paths"
 import { appName } from "./constants"
 import { log } from "./utils"
 
-log.info('generating examples...')
+log.info("generating examples...")
 
 const examplesWebpackConfig = merge(commonWebpackConfig, {
   mode: "production",
@@ -20,7 +20,6 @@ const examplesWebpackConfig = merge(commonWebpackConfig, {
   entry: {
     examples: path.resolve(Paths.Examples, "index.tsx"),
   },
-  externals: {},
   optimization,
   output: {
     path: Paths.DistExample,

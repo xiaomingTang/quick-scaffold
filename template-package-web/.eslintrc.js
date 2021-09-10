@@ -34,7 +34,9 @@ module.exports = {
     // 关闭换行风格检测
     "linebreak-style": "off",
     "quotes": ["error", "double"],
-    "indent": ["error", 2],
+    "indent": ["error", 2, {
+      "SwitchCase": 1,
+    }],
     "no-console": "off",
     "semi": ["error", "never"],
     "react-hooks/rules-of-hooks": "error",

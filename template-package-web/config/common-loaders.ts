@@ -89,7 +89,7 @@ export const rules: webpack.Configuration["module"]["rules"] = [
       {
         loader: "ts-loader",
         options: {
-          transpileOnly: true, // 要生成.d.ts文件就不能开启该选项
+          transpileOnly: !isProduction, // 要生成.d.ts文件就不能开启该选项
           configFile: tsConfigFilePath
         },
       },

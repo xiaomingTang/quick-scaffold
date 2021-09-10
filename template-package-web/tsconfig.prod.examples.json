@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.prod.base.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist-examples"
   }

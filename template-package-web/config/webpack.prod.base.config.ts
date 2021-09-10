@@ -11,7 +11,6 @@ const prodWebpackConfig = merge(commonWebpackConfig, {
   entry: {
     index: path.resolve(Paths.Src, "index.ts"),
   },
-  externals: {},
   optimization,
 })
 

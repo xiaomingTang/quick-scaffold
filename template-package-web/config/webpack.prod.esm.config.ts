@@ -5,7 +5,7 @@ import prodWebpackConfig from "./webpack.prod.base.config"
 import { log } from "./utils"
 import Paths from "./paths"
 
-log.info('generating esm...')
+log.info("generating esm...")
 
 const cjsWebpackConfig = merge(prodWebpackConfig, {
   experiments: {
@@ -15,7 +15,7 @@ const cjsWebpackConfig = merge(prodWebpackConfig, {
     path: Paths.DistEsm,
     filename: "[name].js",
     library: {
-      type: 'module',
+      type: "module",
     },
   },
   plugins: [
