@@ -1,5 +1,6 @@
 import { defaultLang, availableLangs } from "@Src/i18n/datas"
 import { TransitionType, availableTransitionTypes } from "@Src/components/Transitions"
+import { ensureImpossibleAction } from "./utils"
 
 interface BeforeInstallPromptEvent extends Event {
   readonly userChoice: Promise<{
@@ -62,12 +63,7 @@ export function reducer(state = initState, action: Action): State {
       }
     }
     default: {
-      // redux 初始化会执行到这儿
-      if (action && !/^@@redux/.test((action as Action).type)) {
-        // 这儿的赋值, 是仅用于类型检查的, 正常是不会执行到这里的
-        const neverAction: never = action
-        console.error("如果执行到这里了, 说明出错了, 可能你新增了 action 类型, 却忘了在 reducer 的 switch case 中处理.\n\nwrong action: ", neverAction)
-      }
+      ensureImpossibleAction('@globalSettings/', action)
       return state
     }
   }
