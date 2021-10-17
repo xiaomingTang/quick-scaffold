@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import { TransitionGroup, CSSTransition } from "react-transition-group"
 
-import { Pwa } from "@Src/pwa"
+import { Pwa } from "@Src/global/pwa"
 
 import store, { State } from "@Src/store/index"
 import { PageContainer } from "@Src/components/PageContainer"

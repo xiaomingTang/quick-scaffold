@@ -2,7 +2,7 @@ import TerserPlugin from "terser-webpack-plugin"
 import OptimizeCSSAssetsPlugin from "optimize-css-assets-webpack-plugin"
 import webpack from "webpack"
 
-export const optimization: webpack.WebpackOptionsNormalized['optimization'] = {
+export const optimization: webpack.WebpackOptionsNormalized["optimization"] = {
   minimizer: [
     new TerserPlugin({
       parallel: true, // 开启并行压缩，充分利用 cpu

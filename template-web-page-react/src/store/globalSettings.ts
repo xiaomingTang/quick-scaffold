@@ -63,7 +63,7 @@ export function reducer(state = initState, action: Action): State {
       }
     }
     default: {
-      ensureImpossibleAction('@globalSettings/', action)
+      ensureImpossibleAction("@globalSettings/", action)
       return state
     }
   }
